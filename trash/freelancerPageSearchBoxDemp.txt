@@ -1,0 +1,60 @@
+import { useEffect, useState } from 'react';
+
+const Freelancers=()=>{
+    const[inputText,setInputText]=useState("")
+    const [tags,setTags]=useState([]);
+    const [permTags,setPermTags]=useState([]);
+    const [key,setKey]=useState(0);
+    const allTags=['javascript','react','nextjs']
+    
+    
+    const onChange=(e)=>{
+       setInputText(e.target.value)   
+       if(e.target.value!=""){ 
+           const i=(e.target.value)
+           const arr=[];
+           allTags.forEach(element => {
+             let e=element.includes(i);
+             if(e){ 
+                arr.push(element)
+                setTags(arr)
+            }
+
+        });
+    }else{
+        setTags([])
+    }
+}
+const PermTagsSetter=(event,e)=>{
+    event.preventDefault();
+    setKey(Math.random())
+    
+    if(!permTags.includes(e)){ 
+        const array=permTags;
+        console.log(array)
+        array.push(e) 
+        setPermTags(array)
+    }
+
+}  
+ 
+
+    return(
+        <div className="container ">
+            <input value={inputText} className="w-fit border-2 mt-5" type="text" name="inputText" id="" onChange={onChange} />
+            <div className='result mt-2  border-2'>
+            {tags.map((e)=>{ 
+                return (<button key={e} onClick={(event)=>PermTagsSetter(event,e)} className=' mt-2   border-2'>
+                {e} 
+                </button>)
+            })} 
+            </div>
+            {permTags.map((e)=>{
+                return (<button key={key}  className=' mt-2   border-2 border-blue-500'>
+                {e} 
+                </button>)
+            })} 
+            </div>
+    )
+}
+export default Freelancers;
