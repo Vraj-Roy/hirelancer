@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Button } from "@mui/material";
-import Image from "next/image";
+import { Button } from "@mui/material"; 
 
 export default function Home() {
   return (

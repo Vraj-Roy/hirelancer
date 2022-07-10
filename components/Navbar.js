@@ -131,8 +131,8 @@ const Navbar = () => {
               </div>
               }
                 {(!session ) &&  <div>
-                    <button onClick={()=>router.push('/login')}  className="mx-2 rounded-md  bg-orange-600 hover:bg-orange-700"   >Login</button>
-                    <button onClick={()=>router.push('/signup')} className="mx-2 rounded-md bg-orange-600 hover:bg-orange-700"   >Sign Up</button>
+                    <button onClick={()=>router.push('/login')}  className="mx-2 py-2 px-3 text-white rounded-md  bg-orange-600 hover:bg-orange-700"   >Login</button>
+                    <button onClick={()=>router.push('/signup')} className="mx-2 py-2 px-3 text-white rounded-md bg-orange-600 hover:bg-orange-700"   >Sign Up</button>
                   </div>
 
                 }
@@ -198,22 +198,22 @@ const Navbar = () => {
                 </div>
                
               }
-            <Link  href="/"><div className="  block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2" 
+            <Link  href="/freelancers"><div className="  block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2" 
               >
               Find Freelancers
             </div>
               </Link>
-            <Link  href="/"><div className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
+            <Link  href="/assignments"><div className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
               >
-              Find Jobs
+              Find Assignments
             </div>
               </Link>
-            <Link  href="/"><div className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
+            <Link  href="/about"><div className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
               >
               About
             </div>
               </Link>
-            <Link  href="/"><div className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
+            <Link  href="/solution"><div className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
               >
               Solutions
             </div>
