@@ -14,7 +14,7 @@ const Login = ({resetKey}) => {
       setUserData({...userData,[e.target.name]:e.target.value})
     }
   const onsubmit = async() =>{ 
-    let res=await fetch(`${process.evv.URL_PATH}api/login`,{
+    let res=await fetch(`${process.env.URL_PATH}api/login`,{
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
