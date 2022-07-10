@@ -1,4 +1,4 @@
-import Assignment from "../components/assignment";
+import Assignment from "../components/Assignment";
 import { useEffect, useState } from 'react';
 import { AssignMentLoader } from "../content loaders/Loader";
 const Assignments=()=>{

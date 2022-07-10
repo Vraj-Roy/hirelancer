@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";        
 import { AssignMentLoader } from "../../content loaders/Loader";
-import Assignment from "../../components/assignment";
+import Assignment from "../../components/Assignment";
 
 const Slug = () => {
     const router = useRouter();
