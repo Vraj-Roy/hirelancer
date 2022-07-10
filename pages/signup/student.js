@@ -16,7 +16,7 @@ const Signup = ({resetKey}) => {
       const tokenData= localStorage.getItem('token')
       if(tokenData){
 
-      let res=await fetch(`${process.evv.URL_PATH}api/getUserData`,{
+      let res=await fetch(`${process.env.URL_PATH}api/getUserData`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
