@@ -1,12 +1,20 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import {useRouter} from 'next/router';
 import { Button } from "@mui/material";
 import {useSession,signIn,signOut} from 'next-auth/react'
 const Navbar = () => {
   const router=useRouter()
   const {data:session} = useSession() 
-  const [mobileMenu,setMobileMenu]=useState(false)
+  const [mobileMenu,setMobileMenu]=useState(false) 
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+    // if(!session){
+    //   return <></>
+    // }
+   
   return (
     <>
     
@@ -88,9 +96,9 @@ const Navbar = () => {
                       Find Freelancers
                     </div>
                   </Link>
-                  <Link href="/jobs">
+                  <Link href="/assignments">
                     <div className="text-black   px-3 py-2 rounded-md text-md font-medium cursor-pointer">
-                      Find Jobs
+                      Find Assignments
                     </div>
                   </Link>
                   <Link href="/about">
@@ -113,20 +121,23 @@ const Navbar = () => {
             </div>
             <div className=" inset-y-0  hidden   sm:flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               {/* Profile dropdown */}
-              <div className="ml-3 relative">
-              {!session &&  <div>
-                  <Button onClick={()=>router.push('/login')}  className="mx-2 rounded-md  bg-orange-600 hover:bg-orange-700" variant="contained" >Login</Button>
-                  <Button onClick={()=>router.push('/signup')} className="mx-2 rounded-md bg-orange-600 hover:bg-orange-700" variant="contained" >Sign Up</Button>
-                </div>
-               
-              }
-              {/* {session && <div>
-                 <img className="rounded-full h-10  w-10 inline " src={session.user.image }/>
+              {!hasMounted && <div></div>}
+              {hasMounted && <div className="ml-3 relative">
+              
+              {session && <div>
+              <img className="rounded-full h-10  w-10 inline " src={session.user.image }/>
                  <div className="h-12  w-fit inline mx-2 cursor-pointer" onClick={()=>signOut()}>{session.user.name}</div>
                   
               </div>
+              }
+                {(!session ) &&  <div>
+                    <Button onClick={()=>router.push('/login')}  className="mx-2 rounded-md  bg-orange-600 hover:bg-orange-700" variant="contained" >Login</Button>
+                    <Button onClick={()=>router.push('/signup')} className="mx-2 rounded-md bg-orange-600 hover:bg-orange-700" variant="contained" >Sign Up</Button>
+                  </div>
 
-              } */}
+                }
+                 </div>
+                }
                 {/*
       Dropdown menu, show/hide based on menu state.
 
@@ -173,7 +184,7 @@ const Navbar = () => {
                 Sign out
               </Link> */}
                 {/* </div> */}
-              </div>
+             
             </div>
           </div>
         </div>

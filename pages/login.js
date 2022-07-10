@@ -7,6 +7,7 @@ import {useSession,signIn,signOut} from 'next-auth/react'
 
 const Login = ({resetKey}) => { 
   const [userData,setUserData] = useState({email:"",password:""});  
+  const [sent,setSent] = useState(true)  
   const [loading,setLoading]=useState(false)
   const {data:session} = useSession() 
 
@@ -34,6 +35,31 @@ const Login = ({resetKey}) => {
   }
 
   if(session){
+    
+    const sendData=async()=>{ 
+      let userData=(session.user)
+      let res=await fetch(`http://localhost:3000/api/signup`,{
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({userData,type:"google"}),
+      })
+      let response=await res.json(); 
+      if(response.success){  
+        localStorage.setItem('token',response.token);  
+        console.log("success")
+        setSent(false);
+      }else{ 
+        console.log(response)
+        setSent(false);
+        // toast.error("Username already exists");
+      }
+  } 
+  if(sent){
+    sendData();   
+  }
+
     return (<>
     <div>Welcome, {session.user.email}</div>
     <img src={session.user.image }/>

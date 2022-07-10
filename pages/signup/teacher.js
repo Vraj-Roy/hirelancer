@@ -2,18 +2,90 @@
 import React from 'react'
 import Image from 'next/Image'
 import Link from "next/dist/client/link";
-import { useState } from "react"; 
+import { useState , useEffect} from "react"; 
 import { useRouter } from 'next/router';  
 import {useSession,signIn,signOut} from 'next-auth/react'
 
 const Signup = ({resetKey}) => { 
-  const [username, setUsername] = useState(""); 
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [loading,setLoading]=useState(false)
+  const [userInputs, setUserInputs] = useState({username:"",firstName:"",lastName:"",youDo:"",education:"",englishProficiency:"" , description:""});  
+  const [skills, setSkills] = useState([])
+   const [loading,setLoading]=useState(false)
   const {data:session} = useSession() 
+  const router=useRouter();
+  useEffect(() => {
+  const getData=async()=>{
+    const tokenData= localStorage.getItem('token')
+    if(tokenData){
+
+    let res=await fetch(`http://localhost:3000/api/getUserData`,{
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({token:tokenData}),
+    })
+    let response=await res.json(); 
+    if(response.success){  
+      setUserInputs({username:response.username,firstName:"",lastName:"",youDo:"",education:"",englishProficiency:"",description:""}) 
+    }else{ 
+      console.log("failed") 
+      console.log(response)
+    }
+    
+  }
+   }
+   getData();
+}, [])
+
+
+const onChange= (e)=>{
+  setUserInputs({...userInputs,[e.target.name]:e.target.value}) 
+}
+
+const onSubmit = async(e)=>{
+  e.preventDefault(); 
+  const data= {...userInputs , token:localStorage.getItem('token'),skills}
   
- 
+  let res=await fetch(`http://localhost:3000/api/uploadFreelancerprofile`,{
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  let response=await res.json(); 
+  if(response.success){  
+    router.push('/freelancers')
+  }else{    
+    console.log("failed, sorry not found. ") 
+    console.log(response)
+  }
+  
+}   
+// @timneutkens  @nachoiacovino  @donnypangilinan 
+function handleKeyDown(e){
+  if(e.keyCode==8 )
+  { if(e.target.value=="" ){
+    let popped=skills.pop();
+    setSkills(skills.filter((el, i) => i !== popped))
+  }else{
+    return
+  }
+} 
+  // If user did not press enter key, return
+  if(e.key !== 'Enter') return
+  // Get the value of the input
+  const value = e.target.value
+  // If the value is empty, return
+  if(!value.trim()) return
+  // Add the value to the skills array
+  setSkills([...skills, value])
+  // Clear the input
+  e.target.value = ' '
+}
+function removeTag(index){
+setSkills(skills.filter((el, i) => i !== index))
+}
   return (
     <>
        <div className="text-center  mx-auto font-semibold text-xl bg-orange-500 text-gray-100 p-5 my-5"> 
@@ -34,11 +106,13 @@ const Signup = ({resetKey}) => {
               <label htmlFor="majors" className="leading-7 text-sm text-gray-600">
               Username
               </label>
-              <input 
-                type="majors"
-                id="majors"
-                name="majors"
-                className="w-full text-sm bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              <input  
+                value={userInputs.username} 
+                readOnly 
+                type="username"
+                id="username"
+                name="username"
+                className="w-full text-sm bg-gray-100 rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
           </div>
@@ -61,33 +135,37 @@ const Signup = ({resetKey}) => {
   </div>
 
         <div className="flex"> 
-
         <div className="px-2 w-full">
-            <div className="relative mb-4">
-              <label htmlFor="majors" className="leading-7 text-sm text-gray-600">
-              First Name
-              </label>
-              <input 
-                type="majors"
-                id="majors"
-                name="majors"
-                className="w-full text-sm bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                />
-            </div>
-          </div>
-        <div className="px-2 w-full">
-            <div className="relative mb-4">
-              <label htmlFor="majors" className="leading-7 text-sm text-gray-600">
-              Last Name
-              </label>
-              <input 
-                type="majors"
-                id="majors"
-                name="majors"
-                className="w-full text-sm bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-          </div>
+    <div className="relative mb-4">
+      <label htmlFor="firstName" className="leading-7 text-sm text-gray-600">
+      First Name
+      </label>
+      <input 
+      value={userInputs.firstName}
+                onChange={onChange}
+        type="firstName"
+        id="firstName"
+        name="firstName"
+        className="w-full text-sm bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        />
+    </div>
+  </div>
+<div className="px-2 w-full">
+    <div className="relative mb-4">
+      <label htmlFor="lastName" className="leading-7 text-sm text-gray-600">
+      Last Name
+      </label>
+      <input 
+      value={userInputs.lastName}
+                onChange={onChange}
+        type="lastName"
+        id="lastName"
+        name="lastName"
+        className="w-full text-sm bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+      />
+    </div>
+  </div>
+        
                 </div>
 
        
@@ -95,63 +173,80 @@ const Signup = ({resetKey}) => {
 
         <div className="px-2 w-full">
             <div className="relative mb-4">
-              <label htmlFor="majors" className="leading-7 text-sm text-gray-600">
+              <label htmlFor="youDo" className="leading-7 text-sm text-gray-600">
               Add a title to tell the world what you do
               </label>
               <input
                 placeholder='Example: Full Stack Developer | Web  Mobile'
-                type="majors"
-                id="majors"
-                name="majors"
+                type="text"
+                id="youDo"
+                name="youDo"
+                onChange={onChange}
+                value={userInputs.youDo}
                 className="w-full text-sm bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
           </div>
         <div className="px-2 w-full">
             <div className="relative mb-4">
-              <label htmlFor="majors" className="leading-7 text-sm text-gray-600">
+              <label htmlFor="youDo" className="leading-7 text-sm text-gray-600">
+               What you do Offer
+              </label>
+              <textarea
+                placeholder=''   
+                id="description"
+                name="description"
+                onChange={onChange}
+                value={userInputs.description}
+                className="w-full text-sm bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+        <div className="px-2 w-full">
+            <div className="relative mb-4">
+              <label htmlFor="education" className="leading-7 text-sm text-gray-600">
               Add Education
               </label>
               <input
                 placeholder='Example: B Tech, M Tech'
-                type="majors"
-                id="majors"
-                name="majors"
+                type="text"
+                id="education"
+                name="education"
+                onChange={onChange}
+                value={userInputs.education}
                 className="w-full bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
           </div>
         <div className="px-2 w-full"> 
             <div className="relative mb-4">
-              <label htmlFor="majors" className="leading-7 text-sm text-gray-600">
+              <label htmlFor="englishProficiency" className="leading-7 text-sm text-gray-600">
               Your English Proficiency
               </label>
-              <select  className="w-full bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                <option>Basic</option>
-                <option>Conversational</option>
-                <option>Fluent</option>
-                <option>Native</option>
+              <select id="englishProficiency" name="englishProficiency" onChange={onChange} value={userInputs.englishProficiency}  className="w-full bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                <option value="Basic">Basic</option>
+                <option value="Conversational">Conversational</option>
+                <option value="Fluent">Fluent</option>
+                <option value="Native">Native</option>
               </select>
             </div>
           </div>
   
-          <div className="px-2 w-full">
-            <div className="relative mb-4">
-              <label htmlFor="majors" className="leading-7 text-sm text-gray-600">
-              Add Skills
-              </label>
-              <input
-                placeholder='Example: React Javascript'
-                type="majors"
-                id="majors"
-                name="majors"
-                className="w-full bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
+         
+        
+
+
             </div>
-          </div>
-
-
-
+          <div className='my-2'>
+          <div >Enter Some Tags ...</div>
+            <div className="skills-input-container border-2 border-black p-2 rounded-sm min-w-[80vw, 600px] mt-5 flee items-center flex-wrap  ">
+            {  skills.map((tag, index) => ( <div key={index}  className=" text-lg mx-1 my-1 tag-item bg-gray-300 inline-block py-1 px-2 rounded-xl  ml-2">
+                <span className="text">{tag}</span>
+                <span className="close ml-2 text-red-800  cursor-pointer" onClick={() => removeTag(index)}>&times;</span>
+            </div>
+            )) }
+            <input type="text" onKeyDown={handleKeyDown} className="flex-grow ml-2 outline-none p-1 " placeholder="Type somthing" />
+        </div>
             </div>
               
       
@@ -159,7 +254,7 @@ const Signup = ({resetKey}) => {
          
          <button
       
-      onClick={null}
+      onClick={onSubmit}
         type="submit"
         className="w-full py-2 mb-5  rounded-md bg-orange-600 text-gray-100  focus:outline-none"
       >

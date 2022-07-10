@@ -3,12 +3,13 @@ import React, { useEffect } from 'react'
 import Image from 'next/Image'
 import Link from "next/dist/client/link";
 import { useState } from "react"; 
-import { useRouter } from 'next/router';  
+import { Router, useRouter } from 'next/router';  
 import {useSession,signIn,signOut} from 'next-auth/react'
 
 const Signup = ({resetKey}) => {  
   const {data:session} = useSession()    
-  const [userData,setUserData] = useState({email:"",password:""});  
+  const router= useRouter()    
+  const [userData,setUserData] = useState({email:"",password:"",username:""});  
   const onChange=async(e)=>{
       setUserData({...userData,[e.target.name]:e.target.value})
       
@@ -23,58 +24,17 @@ const Signup = ({resetKey}) => {
     })
     let response=await res.json(); 
     if(response.success){  
-      localStorage.setItem('token',response.token);  
-      console.log("success")
-      
+      localStorage.setItem('token',response.token);   
+      router.push('/signup/options')
     }else{ 
-      console.log("failed")
-      // toast.error("Username already exists");
+      console.log(response.message) 
     }
     
   }
 
 
-  // useEffect(() => {
-  //       if(session){
-        
-  //       const username=session.user.name;
-  //       const email=session.user.email;
-  //       const profile=session.user.image;
-  //       const type="google";
-  //       setUserData({username,email,profile,type});
-  //       const send=async()=>{ 
-  //       let res=await fetch(`http://localhost:3000/api/signup`,{
-  //         method: 'POST',
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(userData),
-  //       })
-  //       let response=await res.json(); 
-  //       if(response.success){  
-  //         localStorage.setItem('token',response.token);  
-  //         console.log("success")
-          
-  //       }else{ 
-  //         console.log("failed")
-        
-  //         // toast.error("Username already exists");
-  //       }
-        
-  //     }
-  //       send();
-  //   }
-  //     }, [session])
-      if(session){
-    return(<>
-    <div className="container main w-full h-[80vh] flex justify-center items-center">
-        <Link href="signup/teacher"><div className="bg-orange-500 hover:bg-orange-600 cursor-pointer p-10 text-lg font-semibold mx-5 rounded text-white">Sign up as teacher</div></Link>
-        <Link href="signup/student"><div className="bg-orange-500 hover:bg-orange-600 cursor-pointer p-10 text-lg font-semibold mx-5 rounded text-white">Sign up as Student</div></Link>
-    </div>
-    </>
-    )
-}
-if(!session){
+ 
+
   return(   <>
        
         <div  >
@@ -90,7 +50,20 @@ if(!session){
  
         <div className="px-12 pb-10">
        
-        
+        <div className="w-full mb-2">
+                  <div className="flex items-center">
+                    <i className=" fill-current text-gray-400 text-xs z-10 fas fa-user" />
+                    <input
+                      onChange={onChange}
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                  value={userData.username}
+                  className={'w-full border rounded px-4 py-2   focus:outline-orange-500 '}
+                    />
+                  </div>
+                </div>
+
         <div className="w-full mb-2">
                   <div className="flex items-center">
                     <i className=" fill-current text-gray-400 text-xs z-10 fas fa-user" />
@@ -136,7 +109,7 @@ if(!session){
           </button>
           <button
             // onClick={()=>signIn('google')} 
-            onClick={()=>signIn('google')}
+            onClick={()=>signIn('google',{callbackUrl: `http://localhost:3000/signup/options`})}
             type="submit"
             className="w-full py-2 mb-5 flex align-middle text-center justify-center rounded-md border-2 hover:bg-gray-100 bg-white text-black  focus:outline-none"
           >
@@ -167,7 +140,7 @@ if(!session){
     </div>
     
         </>)
-}
+ 
   
 }
 
