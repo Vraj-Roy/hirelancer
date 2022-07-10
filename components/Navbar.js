@@ -131,8 +131,8 @@ const Navbar = () => {
               </div>
               }
                 {(!session ) &&  <div>
-                    <Button onClick={()=>router.push('/login')}  className="mx-2 rounded-md  bg-orange-600 hover:bg-orange-700" variant="contained" >Login</Button>
-                    <Button onClick={()=>router.push('/signup')} className="mx-2 rounded-md bg-orange-600 hover:bg-orange-700" variant="contained" >Sign Up</Button>
+                    <button onClick={()=>router.push('/login')}  className="mx-2 rounded-md  bg-orange-600 hover:bg-orange-700"   >Login</button>
+                    <button onClick={()=>router.push('/signup')} className="mx-2 rounded-md bg-orange-600 hover:bg-orange-700"   >Sign Up</button>
                   </div>
 
                 }
