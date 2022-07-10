@@ -8,6 +8,9 @@ const nextConfig = {
   images:{
     domains:["miro.medium.com",'upload.wikimedia.org' ]
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  }
 }
 
 module.exports = nextConfig
