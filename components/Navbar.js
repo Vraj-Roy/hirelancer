@@ -193,9 +193,9 @@ const Navbar = () => {
         <div className={`px-2 bg-white border-2  h-[100vh]   absolute w-[100vw]   border-t-2   duration-200 ease-in back `+ (mobileMenu?'left-[0vw]':'left-[-100vw]') } id="mobile-menu">
             {/* Current: "bg-gray-900 text-white", Default: "text-black  " */}
             {!session &&  <div className="flex justify-around my-3">
-                  <Button onClick={()=>router.push('/login')}  className="mx-2 rounded-md  bg-orange-600 hover:bg-orange-700" variant="contained" >Login</Button>
-                  <Button onClick={()=>router.push('/signup')} className="mx-2 rounded-md bg-orange-600 hover:bg-orange-700" variant="contained" >Sign Up</Button>
-                </div>
+            <button onClick={()=>router.push('/login')}  className="mx-2 py-2 px-3 text-white rounded-md  bg-orange-600 hover:bg-orange-700"   >Login</button>
+                    <button onClick={()=>router.push('/signup')} className="mx-2 py-2 px-3 text-white rounded-md bg-orange-600 hover:bg-orange-700"   >Sign Up</button>
+             </div>
                
               }
             <Link  href="/freelancers"><div className="  block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2" 
