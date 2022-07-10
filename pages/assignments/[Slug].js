@@ -26,7 +26,7 @@ const Slug = () => {
 
   return (
     <>
-     { loader && <AssignMentLoader  className= " m-5 p-5 md:mx-auto w-full  md:w-[60vw] md:p-10 border-4 rounded-xl"/>}
+     { loader && <AssignMentLoader B V className= " m-5 p-5 md:mx-auto w-full  md:w-[60vw] md:p-10 border-4 rounded-xl"/>}
         
         {assignment && <Assignment  Slug={assignment.slug?assignment.slug:""}  assignmentName={assignment.assignmentName} createdAt={assignment.postedOn} description={assignment.description} dueDate={assignment.dueDate} postedBy={assignment.postedBy} tags={assignment.tags} /> }
     </>

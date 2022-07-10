@@ -33,7 +33,7 @@ const uploadAssignment=async(req,res)=>{
                             description:req.body.description,
                             postedBy:req.body.username,
                             tags:req.body.tags,     
-                            slug:slug
+                            slug:slug       
                         })
                         A.save();
                         res.json({success:true,message:"Succesfully uploaded"}); 
