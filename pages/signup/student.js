@@ -1,7 +1,5 @@
  
-import React, { useEffect } from 'react'
-import Image from 'next/image'
-import Link from "next/dist/client/link";
+import React, { useEffect } from 'react'  
 import { useState } from "react"; 
 import { useRouter } from 'next/router';  
 import {useSession,signIn,signOut} from 'next-auth/react'

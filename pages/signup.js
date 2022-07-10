@@ -1,6 +1,5 @@
 import { getToken } from "next-auth/jwt"
-import React, { useEffect } from 'react'
-import Image from 'next/image'
+import React, { useEffect } from 'react' 
 import Link from "next/dist/client/link";
 import { useState } from "react"; 
 import { Router, useRouter } from 'next/router';  

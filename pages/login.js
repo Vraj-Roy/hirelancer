@@ -1,5 +1,4 @@
-import React from 'react'
-import Image from 'next/image'
+import React from 'react' 
 import Link from "next/dist/client/link";
 import { useState } from "react"; 
 import { useRouter } from 'next/router';  
