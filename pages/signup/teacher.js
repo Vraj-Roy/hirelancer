@@ -17,7 +17,7 @@ const Signup = ({resetKey}) => {
     const tokenData= localStorage.getItem('token')
     if(tokenData){
 
-    let res=await fetch(`http://localhost:3000/api/getUserData`,{
+    let res=await fetch(`${process.evv.URL_PATH}api/getUserData`,{
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const onSubmit = async(e)=>{
   e.preventDefault(); 
   const data= {...userInputs , token:localStorage.getItem('token'),skills}
   
-  let res=await fetch(`http://localhost:3000/api/uploadFreelancerprofile`,{
+  let res=await fetch(`${process.evv.URL_PATH}api/uploadFreelancerprofile`,{
     method: 'POST',
     headers: {
       "Content-Type": "application/json",

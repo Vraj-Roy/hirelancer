@@ -7,7 +7,7 @@ const Freelancers=()=>{
     const [loader,setLoader]=useState(true);
     useEffect(() => {
        const getAllAssignments=async()=>{
-            let res = await fetch('http://localhost:3000/api/getFreelancers ',{
+            let res = await fetch('${process.evv.URL_PATH}api/getFreelancers ',{
                 method:"GET",
                 headers:{
                     "Content-Type": "application/json",

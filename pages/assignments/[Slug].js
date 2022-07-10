@@ -9,7 +9,7 @@ const Slug = () => {
     const [assignment,setAssignment]=useState(null);
     const [loader,setLoader]=useState(true); 
     const fetchPost = async () => { 
-    let res = await fetch("http://localhost:3000/api/getSpecicPost", {
+    let res = await fetch("${process.evv.URL_PATH}api/getSpecicPost", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

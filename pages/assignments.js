@@ -6,7 +6,7 @@ const Assignments=()=>{
     const [loader,setLoader]=useState(true);    
     useEffect(() => {
        const getAllAssignments=async()=>{
-            let res = await fetch('http://localhost:3000/api/getAssignments',{
+            let res = await fetch(`${process.env.URL_PATH}/api/getAssignments`,{
                 method:"GET",
                 headers:{
                     "Content-Type": "application/json",

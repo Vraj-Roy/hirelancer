@@ -15,7 +15,7 @@ const Signup = ({resetKey}) => {
       
     }
   const onsubmit = async() =>{ 
-    let res=await fetch(`http://localhost:3000/api/signup`,{
+    let res=await fetch(`${process.evv.URL_PATH}api/signup`,{
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -109,7 +109,7 @@ const Signup = ({resetKey}) => {
           </button>
           <button
             // onClick={()=>signIn('google')} 
-            onClick={()=>signIn('google',{callbackUrl: `http://localhost:3000/signup/options`})}
+            onClick={()=>signIn('google',{callbackUrl: `${process.evv.URL_PATH}signup/options`})}
             type="submit"
             className="w-full py-2 mb-5 flex align-middle text-center justify-center rounded-md border-2 hover:bg-gray-100 bg-white text-black  focus:outline-none"
           >

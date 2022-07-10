@@ -15,7 +15,7 @@ const Login = ({resetKey}) => {
       setUserData({...userData,[e.target.name]:e.target.value})
     }
   const onsubmit = async() =>{ 
-    let res=await fetch(`http://localhost:3000/api/login`,{
+    let res=await fetch(`${process.evv.URL_PATH}api/login`,{
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const Login = ({resetKey}) => {
     
     const sendData=async()=>{ 
       let userData=(session.user)
-      let res=await fetch(`http://localhost:3000/api/signup`,{
+      let res=await fetch(`${process.evv.URL_PATH}api/signup`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

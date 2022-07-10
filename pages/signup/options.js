@@ -24,7 +24,7 @@ const Options = () =>{
         const type="google";
         setUserData({username,email,profile,type});
 
-        let res=await fetch(`http://localhost:3000/api/signup`,{
+        let res=await fetch(`${process.evv.URL_PATH}api/signup`,{
           method: 'POST',
           headers: {
             "Content-Type": "application/json",

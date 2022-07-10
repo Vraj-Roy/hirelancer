@@ -18,7 +18,7 @@ const Signup = ({resetKey}) => {
       const tokenData= localStorage.getItem('token')
       if(tokenData){
 
-      let res=await fetch(`http://localhost:3000/api/getUserData`,{
+      let res=await fetch(`${process.evv.URL_PATH}api/getUserData`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const Signup = ({resetKey}) => {
     e.preventDefault(); 
     const data= {...userInputs , token:localStorage.getItem('token'),tags}
     
-    let res=await fetch(`http://localhost:3000/api/uploadAssignment`,{
+    let res=await fetch(`${process.evv.URL_PATH}api/uploadAssignment`,{
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
