@@ -221,17 +221,21 @@ const Navbar = () => {
           <div className=" sm:hidden bg-white relative ">
         <div className={`px-2 bg-white border-2  h-[100vh]   absolute w-[100vw]   border-t-2   duration-200 ease-in back `+ (mobileMenu?'left-[0vw]':'left-[-100vw]') } id="mobile-menu">
             {/* Current: "bg-gray-900 text-white", Default: "text-black  " */}
-            {(!session && 0) &&  <div className="flex justify-around my-3">
-              <button onClick={()=>router.push('/login')}  className="mx-2 py-2 px-3 text-white rounded-md  bg-orange-600 hover:bg-orange-700"   >Login</button>
-              <button onClick={()=>router.push('/signup')} className="mx-2 py-2 px-3 text-white rounded-md bg-orange-600 hover:bg-orange-700"   >Sign Up</button>
-             </div>
-               
-              }
-               {(1 && userData )  &&  <div>
-                  {userData.username}
+            {(!session && !token)  &&  <div>
+                    <button onClick={()=>router.push('/login')}  className="mx-2 py-2 px-3 text-white rounded-md  bg-orange-600 hover:bg-orange-700"   >Login</button>
+                    <button onClick={()=>router.push('/signup')} className="mx-2 py-2 px-3 text-white rounded-md bg-orange-600 hover:bg-orange-700"   >Sign Up</button>
                   </div>
 
                 }
+              {(1 && userData )  &&  <div className="flex justify-center items-center">
+                  <div className="font-semibold text-xl">
+                  {userData.username}
+                  </div>
+                  <div className="h-12 w-12 ml-4 rounded-full overflow-hidden">
+                    <img src={userData.profile+`.png`} alt="" />
+                  </div>
+                  </div>
+                    }
             <Link  href="/freelancers"><div className="  block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2" 
               >
               Find Freelancers
