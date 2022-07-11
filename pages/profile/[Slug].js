@@ -11,7 +11,7 @@ const Slug = ({ data, posts }) => {
     const [loader,setLoader]=useState(true);  
     const fetchUserData = async () => { 
        
-        let res = await fetch(`${process.env.URL_PATH}` + "/api/fullProfile/getFullProfileData", {
+        let res = await fetch(`${process.env.URL_PATH}` + "api/fullProfile/getFullProfileData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +25,7 @@ const Slug = ({ data, posts }) => {
   };
     const fetchUserAssignments = async () => { 
        
-        let res = await fetch(`${process.env.URL_PATH}` + "/api/fullProfile/getAllAssignments", {
+        let res = await fetch(`${process.env.URL_PATH}` + "api/fullProfile/getAllAssignments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

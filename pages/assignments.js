@@ -14,7 +14,7 @@ const Assignments=()=>{
             })
             let response=await res.json();
             setLoader(false)
-            setData(response)
+            setData(response)   
             console.log(response)
        }
        getAllAssignments();
