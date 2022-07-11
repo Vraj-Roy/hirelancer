@@ -5,8 +5,8 @@ const  connectDb = async()=>{
     if(mongoose.connections[0].readyState){  
         return;
     }
-       mongoose.connect("mongodb://localhost:27017/hirelancer") .then(() => console.log("Database connected!"))
-    //    mongoose.connect("mongodb+srv://Vraj:yiZyCa8ipDI8kqWW@hirelancercluster.xgdl5ud.mongodb.net/hirelancer") .then(() => console.log("Database connected!"))
+    //    mongoose.connect("mongodb://localhost:27017/hirelancer") .then(() => console.log("Database connected!"))
+       mongoose.connect("mongodb+srv://Vraj:yiZyCa8ipDI8kqWW@hirelancercluster.xgdl5ud.mongodb.net/hirelancer") .then(() => console.log("Database connected!"))
        .catch(err => console.log(err));
         
 
