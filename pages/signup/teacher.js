@@ -46,7 +46,7 @@ const onSubmit = async(e)=>{
   e.preventDefault(); 
   const data= {...userInputs , token:localStorage.getItem('token'),skills}
   
-  let res=await fetch(`${process.evv.URL_PATH}api/uploadFreelancerprofile`,{
+  let res=await fetch(`${process.env.URL_PATH}api/uploadFreelancerprofile`,{
     method: 'POST',
     headers: {
       "Content-Type": "application/json",

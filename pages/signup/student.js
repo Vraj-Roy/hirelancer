@@ -5,13 +5,15 @@ import { useRouter } from 'next/router';
 import {useSession,signIn,signOut} from 'next-auth/react'
 
 const Signup = ({resetKey}) => { 
-  const [userInputs, setUserInputs] = useState({username:"",firstName:"",lastName:"",date:"",assignmentName:"",description:""});  
+  const [userInputs, setUserInputs] = useState({username:"",firstName:"",lastName:"",date:"",time:"",assignmentName:"",description:"",timeZone:""});  
   const [tags, setTags] = useState([])
   const [loading,setLoading]=useState(false)
   const {data:session} = useSession()  
   const router=useRouter();
   
   useEffect(() => {
+    const t = new Date(); 
+
      const getData=async()=>{
       const tokenData= localStorage.getItem('token')
       if(tokenData){
@@ -25,7 +27,7 @@ const Signup = ({resetKey}) => {
       })
       let response=await res.json(); 
       if(response.success){  
-        setUserInputs({username:response.username,firstName:"",lastName:"",date:"",assignmentName:"",description:""}) 
+        setUserInputs({username:response.username,firstName:"",lastName:"",date:"",time:"",assignmentName:"",description:"",timeZone:t.getTimezoneOffset()}) 
       }else{ 
         console.log("failed") 
         console.log(response)
@@ -39,12 +41,13 @@ const Signup = ({resetKey}) => {
   
   const onChange= (e)=>{
     setUserInputs({...userInputs,[e.target.name]:e.target.value})
+    console.log(userInputs)
   }
   const onSubmit = async(e)=>{
     e.preventDefault(); 
     const data= {...userInputs , token:localStorage.getItem('token'),tags}
     
-    let res=await fetch(`${process.evv.URL_PATH}api/uploadAssignment`,{
+    let res=await fetch(`${process.env.URL_PATH}api/uploadAssignment`,{
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -197,6 +200,25 @@ function removeTag(index){
                         placeholder="Enter Due Date for your assignment"
                         id="date"
                         name="date"
+                        className="w-full bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                    </div>
+                </div>
+                <div className="px-2 md:w-1/2">
+                    <div className="relative mb-4">
+                    <label
+                        htmlFor="date"
+                        className="leading-7 text-sm text-gray-600"
+                    >
+                        Due Time
+                    </label>
+                    <input
+                        value={userInputs.time}
+                        onChange={onChange}
+                        type="time"
+                        placeholder="Enter Due Time for your assignment"
+                        id="time"
+                        name="time"
                         className="w-full bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                     </div>

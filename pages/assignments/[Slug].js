@@ -5,11 +5,11 @@ import Assignment from "../../components/Assignment";
 
 const Slug = () => {
     const router = useRouter();
-    const { Slug } = router.query;
+    const { Slug } = router.query; 
     const [assignment,setAssignment]=useState(null);
     const [loader,setLoader]=useState(true); 
     const fetchPost = async () => { 
-    let res = await fetch("${process.evv.URL_PATH}api/getSpecicPost", {
+    let res = await fetch(`${process.env.URL_PATH}api/getSpecicPost`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +20,7 @@ const Slug = () => {
     setLoader(false)
     setAssignment(response)
   };
-  if (Slug) {
+  if (Slug && !assignment) {
     fetchPost();
   }
 

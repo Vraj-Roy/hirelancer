@@ -3,6 +3,8 @@ const mongoose= require('mongoose');
 const assignmentSchema = mongoose.Schema({ 
     assignmentName:{type:String},  
     dueDate:{type:String},
+    dueTime:{type:String},
+    timeZone:{type:String},
     description:{type:String},
     tags:{type:Array},
     postedBy:{type:String,},

@@ -6,7 +6,7 @@ var randomstring = require("randomstring");
 const uploadAssignment=async(req,res)=>{
         await connectDb();
         if(req.method="POST"){ 
-            if( req.body.token=="" || req.body.username==""|| req.body.firstName=="" || req.body.lastName=="" || req.body.assignmentName=="" || req.body.date=="" ||  req.body.description=="" ||  req.body.tags==""   ){
+            if( req.body.token=="" || req.body.username==""|| req.body.firstName=="" || req.body.lastName=="" || req.body.assignmentName=="" || req.body.date=="" ||  req.body.description=="" ||  req.body.tags==""  || req.body.time=="" ){
                 res.json({success:false,message:"empty fields"})
                
         }else{
@@ -30,6 +30,8 @@ const uploadAssignment=async(req,res)=>{
                         let A = new Assignment({
                             assignmentName:req.body.assignmentName, 
                             dueDate:req.body.date,
+                            dueTime:req.body.time,
+                            timeZone:req.body.timeZone,
                             description:req.body.description,
                             postedBy:req.body.username,
                             tags:req.body.tags,     

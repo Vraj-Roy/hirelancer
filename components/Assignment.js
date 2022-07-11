@@ -14,10 +14,10 @@ const Assignment = ({assignmentName,createdAt,description,dueDate,postedBy, Slug
     
     return(
         <>
-        <Link href={`assignments/`+Slug}>
+        <Link href={Slug==""?("#"):(`/assignments/`+Slug)    }>
         <div className="cursor-pointer">
 
-         <div className="w-full mx-5 md:w-[60vw] p-2 md:p-8 shadow-md md:mx-auto border-2 border-orange-300 rounded-md my-5">
+         <div className="  mx-5 md:w-[60vw] p-2 md:p-8 shadow-md md:mx-auto border-2 border-orange-300 rounded-md my-5">
             <div className="text-gray-700 my-2" >Posted on <span className="font-semibold text-md ml-1 text-gray-900"> {date} </span>  </div>
             <div className="flex justify-between items-center my-2" >
             <div className="text-orange-600 text-xl font-semibold "> {assignmentName}  </div>
@@ -37,7 +37,7 @@ const Assignment = ({assignmentName,createdAt,description,dueDate,postedBy, Slug
             <div>{description}</div>
             <div className="flex flex-wrap my-2 ">
                 {
-                    tags.map((t)=>{
+                    tags && tags.map((t)=>{
                         return <div key={t} className="border-2 border-orange-300 rounded w-fit p-1 mr-2 cursor-pointer">{t}</div> 
                     })
                 }
