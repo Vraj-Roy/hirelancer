@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Router, useRouter } from 'next/router';  
 import {useSession,signIn,signOut} from 'next-auth/react'
 
-const Signup = ({resetKey}) => {  
+const Signup = ({resetkey}) => {  
   const {data:session} = useSession()    
   const router= useRouter()    
   const [userData,setUserData] = useState({email:"",password:"",username:""});  
@@ -24,6 +24,7 @@ const Signup = ({resetKey}) => {
     let response=await res.json(); 
     if(response.success){  
       localStorage.setItem('token',response.token);   
+      resetkey();
       router.push('/signup/options')
     }else{ 
       console.log(response.message) 
