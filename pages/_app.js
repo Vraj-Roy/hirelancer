@@ -7,9 +7,7 @@ function MyApp({ Component, pageProps }) {
   const[key,setKey]=useState();
   const resetkey=()=>{
     setKey(Math.random());
-  }
-  console.log("render")
-
+  } 
   return ( 
   <SessionProvider>
   <Navbar key={key}/>
