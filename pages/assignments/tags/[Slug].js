@@ -46,7 +46,7 @@ const Slug = () => {
           className="min-w-fit w-[10vw] md:w-[5vw] border-2 border-orange-500  h-12"
         >
           search
-        </button>{" "}
+        </button> 
       </div>
       {loader &&
         [1, 2, 3].map((l) => (
