@@ -16,7 +16,7 @@ const Navbar = () => {
     setToken(tokenn)
     
     const fetchUserData = async () => { 
-      let res = await fetch(`${process.env.URL_PATH}api/getUserData`, {
+      let res = await fetch(`${process.env.URL_PATH}/api/getUserData`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -236,22 +236,22 @@ const Navbar = () => {
                   </div>
                   </div>
                     }
-            <Link  href="/freelancers"><div className="  block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2" 
+            <Link  href="/freelancers"><div onClick={()=>setMobileMenu(false)} className="  block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2" 
               >
               Find Freelancers
             </div>
               </Link>
-            <Link  href="/assignments"><div className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
+            <Link  href="/assignments"><div onClick={()=>setMobileMenu(false)} className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
               >
               Find Assignments
             </div>
               </Link>
-            <Link  href="/about"><div className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
+            <Link  href="/about"><div onClick={()=>setMobileMenu(false)} className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
               >
               About
             </div>
               </Link>
-            <Link  href="/solution"><div className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
+            <Link  href="/solution"><div onClick={()=>setMobileMenu(false)} className="text-black   block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
               >
               Solutions
             </div>

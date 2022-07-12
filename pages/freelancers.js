@@ -6,7 +6,7 @@ const Freelancers=()=>{
     const [loader,setLoader]=useState(true);
     useEffect(() => {
        const getAllAssignments=async()=>{
-            let res = await fetch(`${process.env.URL_PATH}api/getFreelancers`,{
+            let res = await fetch(`${process.env.URL_PATH}/api/getFreelancers`,{
                 method:"GET",
                 headers:{
                     "Content-Type": "application/json",

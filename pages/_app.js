@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
   const resetkey=()=>{
     setKey(Math.random());
   }
+  console.log("render")
 
   return ( 
   <SessionProvider>
