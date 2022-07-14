@@ -14,7 +14,7 @@ const Signup = ({resetkey}) => {
       
     }
   const onsubmit = async() =>{ 
-    let res=await fetch(`${process.env.URL_PATH}api/signup`,{
+    let res=await fetch(`${process.env.URL_PATH}/api/signup`,{
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
