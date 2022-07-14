@@ -3,15 +3,13 @@ import Link from "next/dist/client/link";
 import { useState } from "react"; 
 import { useRouter } from 'next/router';  
 import {useSession,signIn,signOut} from 'next-auth/react'
-import { Alert, Slide, Snackbar } from '@mui/material'; 
-import Fade from '@mui/material/Fade';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = ({resetkey}) => { 
   const [userData,setUserData] = useState({email:"",password:""});  
   const [sent,setSent] = useState(true)  
-  const [loading,setLoading]=useState(false)
-  const [state,setState]=useState({ open: false,
-    Transition: Fade,})
+  const [loading,setLoading]=useState(false) 
   const {data:session} = useSession() 
   const router=useRouter();
   const onChange=(e)=>{
@@ -32,9 +30,8 @@ const Login = ({resetkey}) => {
       resetkey();
       
     }else{ 
-      console.log("failed")
-      setState({open: true,Transition:"Grow",});
-      // toast.error("Username already exists");
+      console.log("failed")  
+      toast.error("Wrong Credentials");
     }
     
   }
@@ -55,10 +52,8 @@ const Login = ({resetkey}) => {
         localStorage.setItem('token',response.token);  
         console.log("success")
         setSent(false); 
-      }else{ 
-        console.log(response)
+      }else{  
         setSent(true); 
-        // toast.error("Username already exists");
       }
   } 
   if(sent){
@@ -72,28 +67,21 @@ const Login = ({resetkey}) => {
     {console.log(session)}
     </>)
   
-} 
-function SlideTransition(props) {
-  return <Slide {...props} direction="up" />;
-}
-const handleClose = () => {
-  setState({
-    ...state,
-    open: false,
-  });
-};
+}  
+ 
 return (          
     <> 
-      <Snackbar
-        open={state.open}
-        onClose={handleClose}
-        TransitionComponent={SlideTransition} 
-        key={state.Transition.name}
-      >
-         <Alert variant="filled" onClose={handleClose} severity="error" sx={{ width: '100%',  padding:"10px 30px" , backgroundColor:"red" }}>
-          Wrong Credentials 
-        </Alert>
-      </Snackbar>
+   <ToastContainer
+        position="bottom-left"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     <div  >
       <div className={`main-bg w-full h-[90vh] overflow-hidden flex  items-center justify-center `}>
   <div className="w-full md:w-1/3   rounded-lg">

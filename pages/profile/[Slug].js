@@ -16,10 +16,14 @@ const Slug = ({ data, posts }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username: Slug }),
+      body: JSON.stringify({ username: Slug,token:localStorage.getItem('token') }),
     });
     let response = await res.json(); 
-    console.log(response  ) 
+    console.log(response  )
+
+    if(response.U.role=="" && response.sameUser){
+      router.push("/signup/options")
+   }  
     setLoader(false)
     setUserData(response)
   };
@@ -30,11 +34,12 @@ const Slug = ({ data, posts }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username: Slug }),
+      body: JSON.stringify({ username: Slug,token:localStorage.getItem('token')}),
     });
     let response = await res.json(); 
     setLoader(false)
     setassignmentData(response)
+
   };
 
   if (Slug && (userData=="") && (assignmentData=="")) {
@@ -57,6 +62,7 @@ const Slug = ({ data, posts }) => {
       </div>
         ) 
   }  
+ 
 
   return (
     <>

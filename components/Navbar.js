@@ -27,6 +27,7 @@ const Navbar = ({resetkey   }) => {
       });
       let response = await res.json();
       setUserData(response);
+      console.log(response)
     };
     if (!userData) {
       fetchUserData();
@@ -87,9 +88,9 @@ const Navbar = ({resetkey   }) => {
               <div className="hidden sm:block sm:ml-6">
                 <div className="flex ">
                   {/* Current: "bg-gray-900 text-white", Default: "text-black  " */}
-                  <Link href="/freelancers">
+                  <Link href="/teachers">
                     <div className=" px-3 py-2 rounded-md text-md font-medium cursor-pointer">
-                      Find Freelancers
+                      Find Teachers
                     </div>
                   </Link>
                   <Link href="/assignments">
@@ -150,7 +151,7 @@ const Navbar = ({resetkey   }) => {
                       </button>
                     </div>
                   )}
-                  {userData && (
+                  {userData && userData.role &&  (
                     <>
                     <div className="relative">
 
@@ -188,12 +189,12 @@ const Navbar = ({resetkey   }) => {
           >
             {/* Current: "bg-gray-900 text-white", Default: "text-black  " */}
          
-            <Link href="/freelancers">
+            <Link href="/teachers">
               <div
                 onClick={onChangeMobileMenu}
                 className="  block px-3 py-2  text-base font-medium border-b-2 border-orange-400 my-2"
               >
-                Find Freelancers
+                Find Teachers
               </div>
             </Link>
             <Link href="/assignments">

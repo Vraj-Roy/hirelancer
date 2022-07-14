@@ -16,8 +16,7 @@ const Signup = async(req,res)=>{
             let userMail=await User.findOne({email:req.body.email});
             let userUserName=await User.findOne({username:req.body.username});  
 
-            if(!userMail && !userUserName){
-                console.log("uniqie username")
+            if(!userMail && !userUserName){ 
                 let U = new User({ 
                     email:req.body.email,
                     username:req.body.username.replace(/\s/g,''), 
@@ -25,35 +24,15 @@ const Signup = async(req,res)=>{
                 })
 
                 await U.save(); 
-                var token = jwt.sign({ email:req.body.email  }, '!@#$%^&*()_+KingInTheNorth!@#$%^&*()_+');
+                var token = jwt.sign({ email:req.body.email,username:req.body.username  }, '!@#$%^&*()_+KingInTheNorth!@#$%^&*()_+');
                 res.json({success:true,token})
-            }else if(!userMail&&userUserName){
-                console.log(" username same")
-                var isUnique = false;
-                var i = 0;
-                while(isUnique==false){
-                    let userUserName=await User.findOne({username:req.body.username+i});
-                    if(!userUserName){
-                        
-                        let U = new User({ 
-                        email:req.body.email,
-                        username:req.body.username.replace(/\s/g,'')+i, 
-                        password: hash  
-                        })
-
-                    await U.save();
-                    isUnique==true; 
-                    }else{
-                        i++;
-                    }
-                }
-            
-            var token = jwt.sign({ email:req.body.email  }, '!@#$%^&*()_+KingInTheNorth!@#$%^&*()_+');
-            res.json({success:true,token})
-
-        }
+            }else if(userUserName && !userMail){
+                res.json({success:false,message:"Username is already exist "})
+                
+                 
+            } 
         else{
-                res.json({success:false,message:"User already exist"})
+                res.json({success:false,message:"another account is already linked with this email "})
                 
         }
         }else{ 
@@ -70,7 +49,7 @@ const Signup = async(req,res)=>{
                     password: hash  
                 })
                 await U.save(); 
-                var token = jwt.sign({ email:req.body.email  }, '!@#$%^&*()_+KingInTheNorth!@#$%^&*()_+');
+                var token = jwt.sign({ email:req.body.email, usenname:req.body.username  }, '!@#$%^&*()_+KingInTheNorth!@#$%^&*()_+');
                 res.json({success:true,token})
         }else{
                 res.json({success:false,message:"User already exist"})

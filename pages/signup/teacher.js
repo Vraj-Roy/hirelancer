@@ -6,7 +6,7 @@ import { useState , useEffect} from "react";
 import { useRouter } from 'next/router';  
 import {useSession,signIn,signOut} from 'next-auth/react'
 
-const Signup = ({resetKey}) => { 
+const Signup = ({resetkey}) => { 
   const [userInputs, setUserInputs] = useState({username:"",firstName:"",lastName:"",youDo:"",education:"",englishProficiency:"" , description:""});  
   const [skills, setSkills] = useState([])
    const [loading,setLoading]=useState(false)
@@ -27,6 +27,7 @@ const Signup = ({resetKey}) => {
     let response=await res.json(); 
     if(response.success){  
       setUserInputs({username:response.username,firstName:"",lastName:"",youDo:"",education:"",englishProficiency:"",description:""}) 
+      
     }else{ 
       console.log("failed") 
       console.log(response)
@@ -55,7 +56,8 @@ const onSubmit = async(e)=>{
   })
   let response=await res.json(); 
   if(response.success){  
-    router.push('/freelancers')
+    router.push('/teachers')
+    resetkey()
   }else{    
     console.log("failed, sorry not found. ") 
     console.log(response)
@@ -238,7 +240,7 @@ setSkills(skills.filter((el, i) => i !== index))
 
             </div>
           <div className='my-2'>
-          <div >Enter Some Tags ...</div>
+          <div className="leading-7 text-sm font-bold ml-2 text-gray-600" >Enter what you are good at</div>
             <div className="skills-input-container border-2 border-black p-2 rounded-sm min-w-[80vw, 600px] mt-5 flee items-center flex-wrap  ">
             {  skills.map((tag, index) => ( <div key={index}  className=" text-lg mx-1 my-1 tag-item bg-gray-300 inline-block py-1 px-2 rounded-xl  ml-2">
                 <span className="text">{tag}</span>

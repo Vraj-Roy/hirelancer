@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from 'next/router';  
 import {useSession,signIn,signOut} from 'next-auth/react'
 
-const Signup = ({resetKey}) => { 
+const Signup = ({resetkey}) => { 
   const [userInputs, setUserInputs] = useState({username:"",firstName:"",lastName:"",date:"",time:"",assignmentName:"",description:"",timeZone:""});  
   const [tags, setTags] = useState([])
   const [loading,setLoading]=useState(false)
@@ -18,7 +18,7 @@ const Signup = ({resetKey}) => {
       const tokenData= localStorage.getItem('token')
       if(tokenData){
 
-      let res=await fetch(`${process.env.URL_PATH}api/getUserData`,{
+      let res=await fetch(`${process.env.URL_PATH}/api/getUserData`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ const Signup = ({resetKey}) => {
     e.preventDefault(); 
     const data= {...userInputs , token:localStorage.getItem('token'),tags}
     
-    let res=await fetch(`${process.env.URL_PATH}api/uploadAssignment`,{
+    let res=await fetch(`${process.env.URL_PATH}/api/uploadAssignment`,{
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -56,6 +56,7 @@ const Signup = ({resetKey}) => {
     })
     let response=await res.json(); 
     if(response.success){  
+      resetkey()
       router.push('/assignments')
     }else{ 
       console.log("failed") 
@@ -246,8 +247,8 @@ function removeTag(index){
             
             
             </div>
-            <h2>Enter Some Tags ...</h2>
-            <div className="tags-input-container border-2 border-black p-2 rounded-sm min-w-[80vw, 600px] mt-5 flee items-center flex-wrap  ">
+            <div className="leading-7 text-sm font-bold  text-gray-600" >Enter what you are good at</div>
+            <div className="tags-input-container border-2 border-black p-2 rounded-sm min-w-[80vw, 600px]  flee items-center flex-wrap  ">
             {  tags.map((tag, index) => ( <div key={index}  className=" text-lg mx-1 my-1 tag-item bg-gray-300 inline-block py-1 px-2 rounded-xl  ml-2">
                 <span className="text">{tag}</span>
                 <span className="close ml-2 text-red-800  cursor-pointer" onClick={() => removeTag(index)}>&times;</span>

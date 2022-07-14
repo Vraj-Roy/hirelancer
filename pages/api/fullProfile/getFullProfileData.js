@@ -24,12 +24,25 @@ const getFullProfileData=async(req,res)=>{
     }else{
 
         let U= await User.findOne({username:req.body.username})
-        if(U){
-            res.json({success:true,U})
-        }else{
-            res.json({success:false,message:"User not found"})
+        
+        if(req.body.token){
+        
+        let user = jwt.verify(req.body.token,'!@#$%^&*()_+KingInTheNorth!@#$%^&*()_+');
+        
+        if(user.username==U.username){
+            res.json({success:true,U,sameUser:true})
+        }
+        else if(user.username!=U.username){
+            res.json({success:true,U,sameUser:false})
+        }
+        else{
+            res.json({success:false,message:"User not found",sameUser:null})
             
         }
+           
+    }else{
+        res.json({success:true,U,sameUser:false})
+    }
     }
 }
 export default getFullProfileData

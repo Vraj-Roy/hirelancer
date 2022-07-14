@@ -20,8 +20,7 @@ function MyApp({ Component, pageProps }) {
     router.events.on('routeChangeComplete', ()=>{
       setProgress(100)
     })
-  }, )
-  console.log("renderd")
+  }, ) 
   return ( 
   <SessionProvider>
    <LoadingBar

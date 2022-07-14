@@ -14,7 +14,8 @@ const getuserdata=async(req,res)=>{
                     if(u){
                         res.json({success:true,
                         username:u.username,
-                        profile:u.profile_pic
+                        profile:u.profile_pic,
+                        role:u.role
                 })  
 
                     }else{
