@@ -4,9 +4,8 @@ const  connectDb = async()=>{
 
     if(mongoose.connections[0].readyState){  
         return;
-    }
-    //    mongoose.connect("mongodb://localhost:27017/hirelancer") .then(() => console.log("Database connected!"))
-       mongoose.connect(process.env.DB_URI) .then(() => console.log("Database connected!"))
+    } 
+       mongoose.connect(process.env.DB_URI).then(() => console.log("Database connected!"))
        .catch(err => console.log(err));
         
 

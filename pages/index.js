@@ -6,7 +6,7 @@ export default function Home() {
   return (
  <>
  {/* Post Job */}
- <div className=" w-auto  md:w-[60vw] mrs-auto  mt-10  rounded-lg">
+ <div className=" w-auto  md:w-[50vw] mrs-auto  mt-10  rounded-lg">
     
     {/* <h2 className="text-3xl text-center text-orange- mb-4">Signup</h2> */}
     <div className="md:px-12 px-2 ">

@@ -3,7 +3,8 @@ require('dotenv').config();
 const nextConfig = {
   reactStrictMode: false,
   env:{
-    URL_PATH : process.env.URL_PATH
+    URL_PATH : process.env.URL_PATH,  
+    DB_URI : process.env.DB_URI
   },
   images:{
     domains:["miro.medium.com",'upload.wikimedia.org' ]

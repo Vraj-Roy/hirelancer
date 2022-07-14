@@ -42,7 +42,7 @@ const Assignments = () => {
         [1, 2, 3].map((l) => (
           <AssignMentLoader
             key={l}
-            className=" m-5 p-5 md:mx-auto w-full  md:w-[60vw] md:p-10 border-4 rounded-xl"
+            className=" px-3 py-5 m-5 md:mx-auto  md:w-[60vw] md:p-10 border-2 rounded-md"
           />
         ))}
       {data &&

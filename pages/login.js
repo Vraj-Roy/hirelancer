@@ -3,18 +3,22 @@ import Link from "next/dist/client/link";
 import { useState } from "react"; 
 import { useRouter } from 'next/router';  
 import {useSession,signIn,signOut} from 'next-auth/react'
+import { Alert, Slide, Snackbar } from '@mui/material'; 
+import Fade from '@mui/material/Fade';
 
 const Login = ({resetkey}) => { 
   const [userData,setUserData] = useState({email:"",password:""});  
   const [sent,setSent] = useState(true)  
   const [loading,setLoading]=useState(false)
+  const [state,setState]=useState({ open: false,
+    Transition: Fade,})
   const {data:session} = useSession() 
   const router=useRouter();
   const onChange=(e)=>{
       setUserData({...userData,[e.target.name]:e.target.value})
     }
   const onsubmit = async() =>{ 
-    let res=await fetch(`${process.env.URL_PATH}api/login`,{
+    let res=await fetch(`${process.env.URL_PATH}/api/login`,{
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -29,6 +33,7 @@ const Login = ({resetkey}) => {
       
     }else{ 
       console.log("failed")
+      setState({open: true,Transition:"Grow",});
       // toast.error("Username already exists");
     }
     
@@ -38,7 +43,7 @@ const Login = ({resetkey}) => {
     
     const sendData=async()=>{ 
       let userData=(session.user)
-      let res=await fetch(`${process.evv.URL_PATH}api/signup`,{
+      let res=await fetch(`${process.evv.URL_PATH}/api/signup`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -49,10 +54,10 @@ const Login = ({resetkey}) => {
       if(response.success){  
         localStorage.setItem('token',response.token);  
         console.log("success")
-        setSent(false);
+        setSent(false); 
       }else{ 
         console.log(response)
-        setSent(false);
+        setSent(true); 
         // toast.error("Username already exists");
       }
   } 
@@ -60,17 +65,35 @@ const Login = ({resetkey}) => {
     sendData();   
   }
 
-    return (<>
+  return (<>
     <div>Welcome, {session.user.email}</div>
     <img src={session.user.image }/>
     <button onClick={()=>signOut()}>SignOut</button>
     {console.log(session)}
     </>)
   
-  } 
-  return (
-    <>
-       
+} 
+function SlideTransition(props) {
+  return <Slide {...props} direction="up" />;
+}
+const handleClose = () => {
+  setState({
+    ...state,
+    open: false,
+  });
+};
+return (          
+    <> 
+      <Snackbar
+        open={state.open}
+        onClose={handleClose}
+        TransitionComponent={SlideTransition} 
+        key={state.Transition.name}
+      >
+         <Alert variant="filled" onClose={handleClose} severity="error" sx={{ width: '100%',  padding:"10px 30px" , backgroundColor:"red" }}>
+          Wrong Credentials 
+        </Alert>
+      </Snackbar>
     <div  >
       <div className={`main-bg w-full h-[90vh] overflow-hidden flex  items-center justify-center `}>
   <div className="w-full md:w-1/3   rounded-lg">

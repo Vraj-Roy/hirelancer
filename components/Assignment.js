@@ -38,7 +38,7 @@ const Assignment = ({assignmentName,createdAt,description,dueDate,postedBy, Slug
             <div className="flex flex-wrap my-2 ">
                 {
                     tags && tags.map((t,index)=>{
-                        return <div key={index} className="border-2 border-orange-300 rounded w-fit p-1 mr-2 cursor-pointer">{t}</div> 
+                        return <Link  key={index} href={`/assignments/tags/${t}`}><div className="border-2 border-orange-300 rounded w-fit p-1 mr-2 cursor-pointer">{t}</div></Link>
                     })
                 }
             </div>
