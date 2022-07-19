@@ -18,8 +18,7 @@ const Options = () =>{
   useEffect(() => {
     
 const send=async()=>{   
-  
-  if(session){ 
+   
          
         let res=await fetch(`${process.env.URL_PATH}/api/signup`,{
           method: 'POST',
@@ -43,7 +42,7 @@ const send=async()=>{
         }
         
       }  
-    }
+     
     send();
       }, [])
 

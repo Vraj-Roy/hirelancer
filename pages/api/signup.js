@@ -40,7 +40,7 @@ const Signup = async(req,res)=>{
         }else{
             let secret="v"
             const googleToken= await getToken({ req, secret })
-            // console.log(googleToken)
+            console.log(googleToken)
             var salt =  bcrypt.genSaltSync(10);
             var hash =  bcrypt.hashSync(googleToken.picture , salt); 
             let userMail=await User.findOne({email:googleToken.email});
