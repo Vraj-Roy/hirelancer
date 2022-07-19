@@ -20,8 +20,7 @@ const Options = () =>{
 const send=async()=>{   
   
   if(session){ 
-        localStorage.removeItem('token');   
-
+         
         let res=await fetch(`${process.env.URL_PATH}/api/signup`,{
           method: 'POST',
           headers: {
@@ -44,8 +43,8 @@ const send=async()=>{
         }
         
       }  
-      send();
     }
+    send();
       }, [])
 
         return(<>
