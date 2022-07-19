@@ -1,9 +1,12 @@
  
 import { useEffect,useState } from 'react';
 import Link from 'next/link';  
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Settings = ({resetKey}) => {
-    const [user,setUser]=useState({bio: "", country: "", email: "", firstName: "",  lastName: "", phone: "" , profile_pic: "", username: ""})
+const Settings = ({resetkey}) => {
+    const [user,setUser]=useState({about: "", country: "", email: "", firstName: "",  lastName: "", phone: "" , profile_pic: "", username: ""})
+ 
     useEffect(() => {
         const getUserData=async()=>{
         const token=localStorage.getItem('token')    
@@ -16,44 +19,51 @@ const Settings = ({resetKey}) => {
       })    
         let data=await res.json();   
 
-      console.log(data.userData )
+    
         setUser(data.userData)
     }
         getUserData();
     }, [])
     const onChange = (e)=>{
-        e.preventDefault();
+        e.preventDefault(); 
         setUser({...user,[e.target.name]:e.target.value})
         
     }
     const color="light-theme"
-
-    const saveChanges = ()=>{
-
-    }
-    // const saveChanges = async(event) => {
-    //     event.preventDefault();
-    //     const token=localStorage.getItem('token')    
-    //     let res = await fetch(`${process.env.URL_PATH}`+'/api/updateUserDataForSettings',{
-    //     method: 'POST',
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({token:token,user}),
-    //   })    
-    //     let response=await res.json(); 
-    //     if (response.success){
-    //         localStorage.setItem('token',(response.token))
-    //         toast.success("Your settings changes are saved succesfully");
-    //         resetKey();
-    //     }else if(!response.success){
-    //         toast.error("Sorry, Username already exists ");
-    //     }
+ 
+    const saveChanges = async(event) => {
+        event.preventDefault();
+        const token=localStorage.getItem('token')    
+        let res = await fetch(`${process.env.URL_PATH}`+'/api/settings/updateUserProfile',{
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({token:token,user}),
+      })    
+        let response=await res.json(); 
+        if (response.success){ 
+            localStorage.setItem('token',(response.token))
+            resetkey();
+            toast.success("Your settings changes are saved succesfully");
+        }else if(!response.success){
+            toast.error("Sorry, Username already exists ");
+        }
         
          
-    // };
+    };
     return (<>
-    
+     <ToastContainer
+        position="bottom-left"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
                
             <div className={`  ${color} `}>
                 <div className={` mx-auto ${color} rounded`}> 
@@ -97,7 +107,7 @@ const Settings = ({resetKey}) => {
                                 <label htmlFor="about" className={`pb-2 text-sm font-bold text-gray-800 ${color}`}>
                                     About
                                 </label>
-                                <textarea id="about" value={user.bio} onChange={onChange} name="bio" className="bg-transparent w  border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-orange-700 border-2 resize-none placeholder-gray-500 text-black " placeholder="Let the world know who you are" rows={2}  />
+                                <textarea id="about" value={user.about} onChange={onChange} name="about" className="bg-transparent w  border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-orange-700 border-2 resize-none placeholder-gray-500 text-black " placeholder="Let the world know who you are" rows={2}  />
                                 <p className="w-full text-right text-xs pt-1 text-black ">Character Limit: 200</p>
                             </div>
                         </div>

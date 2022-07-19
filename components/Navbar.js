@@ -27,7 +27,7 @@ const Navbar = ({resetkey   }) => {
       });
       let response = await res.json();
       setUserData(response);
-      console.log(response)
+      // console.log(response)
     };
     if (!userData) {
       fetchUserData();
@@ -121,7 +121,7 @@ const Navbar = ({resetkey   }) => {
               {!hasMounted && <div></div>}
               {hasMounted && (
                 <div className="ml-3 relative">
-                  {session && (
+                  {/* {session && (
                     <div>
                       <img
                         className="rounded-full h-10  w-10 inline "
@@ -134,8 +134,24 @@ const Navbar = ({resetkey   }) => {
                         {session.user.name}
                       </div>
                     </div>
+                  )} */}
+                  {token && userData &&  !userData.role && (
+                    <div>
+                      <button
+                        onClick={() => router.push("/login")}
+                        className="mx-2 py-2 px-3 text-white rounded-md  bg-orange-600 hover:bg-orange-700"
+                      >
+                        Login
+                      </button>
+                      <button
+                        onClick={() => router.push("/signup")}
+                        className="mx-2 py-2 px-3 text-white rounded-md bg-orange-600 hover:bg-orange-700"
+                      >
+                        Sign Up
+                      </button>
+                    </div>
                   )}
-                  {!session && !token && (
+                  {!token && (
                     <div>
                       <button
                         onClick={() => router.push("/login")}
@@ -165,7 +181,7 @@ const Navbar = ({resetkey   }) => {
                     </div>{ dropDown && <div onClick={()=>setDropDown(false)} className="absolute -right-4  text-white text-lg mr-1 rounded-md overflow-hidden ">
                         <Link href={`/profile/${userData.username}`}><div className="bg-orange-500 hover:bg-orange-700 border-red-600 border-b-2 cursor-pointer px-4 py-1">Profile</div></Link>
                         <Link href="/settings"><div className="bg-orange-500 hover:bg-orange-700 border-red-600 border-b-2  px-4 py-1 cursor-pointer">Settings</div></Link>
-                        <div onClick={()=>{localStorage.removeItem('token'),resetkey()}} className="bg-red-500 hover:bg-red-700 border-y-pink-200 cursor-pointer px-4 py-1">Logout</div>
+                        <div onClick={()=>{localStorage.removeItem('token'),resetkey(),signOut()}} className="bg-red-500 hover:bg-red-700 border-y-pink-200 cursor-pointer px-4 py-1">Logout</div>
                     </div>}
                     </div>
                     

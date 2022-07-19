@@ -1,12 +1,12 @@
 import React from 'react' 
 import Link from "next/dist/client/link";
-import { useState } from "react"; 
+import { useState,useEffect } from "react"; 
 import { useRouter } from 'next/router';  
 import {useSession,signIn,signOut} from 'next-auth/react'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Login = ({resetkey}) => { 
+const Login = ({resetkey}) => {  
   const [userData,setUserData] = useState({email:"",password:""});  
   const [sent,setSent] = useState(true)  
   const [loading,setLoading]=useState(false) 
@@ -30,17 +30,15 @@ const Login = ({resetkey}) => {
       resetkey();
       
     }else{ 
-      console.log("failed")  
+      console.log("failed")   
       toast.error("Wrong Credentials");
     }
     
   }
-
-  if(session){
-    
-    const sendData=async()=>{ 
+  if(session ){ 
+    const sendData=async()=>{  
       let userData=(session.user)
-      let res=await fetch(`${process.evv.URL_PATH}/api/signup`,{
+      let res=await fetch(`${process.env.URL_PATH}/api/login`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -49,23 +47,24 @@ const Login = ({resetkey}) => {
       })
       let response=await res.json(); 
       if(response.success){  
-        localStorage.setItem('token',response.token);  
-        console.log("success")
-        setSent(false); 
+        localStorage.setItem('token',response.token);   
+        if(response.message=="form not filled"){ 
+          router.push('/signup/options')
+          
+        }else{
+          router.push('/')
+          resetkey()
+        }
       }else{  
+        
+        router.push('/signup')
         setSent(true); 
       }
   } 
   if(sent){
     sendData();   
   }
-
-  return (<>
-    <div>Welcome, {session.user.email}</div>
-    <img src={session.user.image }/>
-    <button onClick={()=>signOut()}>SignOut</button>
-    {console.log(session)}
-    </>)
+ 
   
 }  
  
@@ -94,7 +93,7 @@ return (
     </div>
     {/* <h2 className="text-3xl text-center text-orange- mb-4">Login</h2> */}
     <div className="px-12 pb-10">
-    {!session && <>
+  
     
     <div className="w-full mb-2">
               <div className="flex items-center">
@@ -163,8 +162,7 @@ return (
            
         
       </button>
-      </>
-    }
+   
       <div className='h-10 w-10 m-auto mt-2'>
        {loading && <img src="/loading.gif"/> }
       </div>

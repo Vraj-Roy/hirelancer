@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Router, useRouter } from "next/router";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
 
 const Signup = ({ resetkey }) => {
@@ -131,10 +130,10 @@ const Signup = ({ resetkey }) => {
                 Sign Up
               </button>
               <button
-                // onClick={()=>signIn('google')}
+                // onClick={()=>signIn('  ')}
                 onClick={() =>
                   signIn("google", {
-                    callbackUrl: `${process.evv.URL_PATH}signup/options`,
+                    callbackUrl: `${process.env.URL_PATH}/signup/options`,
                   })
                 }
                 type="submit"
