@@ -39,8 +39,7 @@ const Signup = async(req,res)=>{
         }
         }else{
             let secret="v"
-            const googleToken= await getToken({ req, secret })
-            console.log(googleToken)
+            const googleToken= await getToken({ req, secret }) 
             var salt =  bcrypt.genSaltSync(10);
             var hash =  bcrypt.hashSync(googleToken.picture , salt); 
             let userMail=await User.findOne({email:googleToken.email});
@@ -80,7 +79,16 @@ const Signup = async(req,res)=>{
                 }
                 
             }else{  
-                res.json({success:false,message:"Email already exist"})
+                // res.json({success:false,message:"Email already exist"})
+                 
+                if(userMail.role==""){
+                    var token = jwt.sign({ email: googleToken.email, usenname: googleToken.name  }, '!@#$%^&*()_+KingInTheNorth!@#$%^&*()_+');
+                    res.json({success:true,token,successcode:2})
+                }else {
+                    var token = jwt.sign({ email: googleToken.email, usenname: googleToken.name  }, '!@#$%^&*()_+KingInTheNorth!@#$%^&*()_+');
+                    res.json({success:true,token,successcode:1})
+                }
+
         }
         }
         

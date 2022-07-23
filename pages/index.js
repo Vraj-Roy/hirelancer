@@ -5,11 +5,12 @@ import { Button } from "@mui/material";
 export default function Home() {
   return (
  <>
- {/* Post Job */}
- <div className=" w-auto  md:w-[50vw] mrs-auto  mt-10  rounded-lg">
+ {/* Post Job */} 
+ <div style={{backgroundColor:"#ffd700"}}>
+ <div className=" w-auto  md:w-[800px] mrs-auto ml-auto h-fit  pt-5 rounded-lg">
     
     {/* <h2 className="text-3xl text-center text-orange- mb-4">Signup</h2> */}
-    <div className="md:px-12 px-2 ">
+    <div className="md:mx-12 px-2 bg-white 600 rounded-xl   ">
     <div className="mx-auto flex flex-wrap font-bold text-3xl">
           <div className="px-2 md:w-1/2">
             <div className="relative mb-4">
@@ -127,6 +128,10 @@ export default function Home() {
   
     </div>
   </div>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path fill="#ffd700" fillOpacity="1" d="M0,160L30,181.3C60,203,120,245,180,234.7C240,224,300,160,360,138.7C420,117,480,139,540,170.7C600,203,660,245,720,266.7C780,288,840,288,900,261.3C960,235,1020,181,1080,144C1140,107,1200,85,1260,85.3C1320,85,1380,107,1410,117.3L1440,128L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"></path>
+</svg>
     {/* Conatiners containg vaiours fields */}
       <div className="container     mx-auto">
         <div className="flex flex-wrap m-auto justify-center items-center fit-content ">

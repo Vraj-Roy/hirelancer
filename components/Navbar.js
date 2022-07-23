@@ -17,7 +17,7 @@ const Navbar = ({resetkey   }) => {
     let tokenn = localStorage.getItem("token");
     setToken(tokenn);
 
-    const fetchUserData = async () => {
+    const fetchUserData = async () => { 
       let res = await fetch(`${process.env.URL_PATH}/api/getUserData`, {
         method: "POST",
         headers: {
@@ -26,8 +26,10 @@ const Navbar = ({resetkey   }) => {
         body: JSON.stringify({ token: tokenn }),
       });
       let response = await res.json();
+      if(response.role==""){
+        router.push('/signup/options')
+      }
       setUserData(response);
-      // console.log(response)
     };
     if (!userData) {
       fetchUserData();

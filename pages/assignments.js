@@ -29,7 +29,7 @@ const Assignments = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
           value={searchQuery}
           type="text"
-          className=" border-2  h-12 border-orange-500 outline-orange-600 px-3 w-[80vw] md:w-[55vw] text-lg"
+          className=" border-2  h-12 border-orange-500 outline-orange-600 px-3 w-[80vw] md:max-w-[900px] text-lg"
         />{" "}
         <button
           onClick={() => Router.push(`/assignments/tags/${searchQuery}`)}

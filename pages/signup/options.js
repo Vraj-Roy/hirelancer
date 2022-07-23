@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {useSession  } from 'next-auth/react'
 
-const Options = () =>{
+const Options = ({resetkey}) =>{
     const router=useRouter();  
     const { data: session } = useSession();
     // useEffect(() => {
@@ -30,12 +30,17 @@ const send=async()=>{
         let response=await res.json();  
         if(response.success){  
             // signOut();
-          console.log("success")
-          localStorage.setItem('token',response.token);  
+          resetkey();
+          if(response.successcode==1){
+            localStorage.setItem('token',response.token);  
+            router.push('/')
+          }else{
+            localStorage.setItem('token',response.token);  
+          } 
           
-        }else{ 
+        }else{  
           console.log("failed") 
-          toast.error("Email already exists");
+          toast.error("You have another account with the email");
           setTimeout(() => {
             router.push('/signup')  
           }, 1500);

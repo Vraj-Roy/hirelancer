@@ -17,7 +17,7 @@ const Assignment = ({assignmentName,createdAt,description,dueDate,postedBy, Slug
         <Link href={Slug==""?("#"):(`/assignments/`+Slug)    }>
         <div className="cursor-pointer">
 
-         <div className="  mx-5 md:w-[60vw] p-2 md:p-8 shadow-md md:mx-auto border-2 border-orange-300 rounded-md my-5">
+         <div className="  mx-5 w-full md:max-w-[900px] p-2 md:p-8 shadow-md md:mx-auto border-2 border-orange-300 rounded-md my-5">
             <div className="text-gray-700 my-2" >Posted on <span className="font-semibold text-md ml-1 text-gray-900"> {date} </span>  </div>
             <div className="flex justify-between items-center my-2" >
             <div className="text-orange-600 text-xl font-semibold "> {assignmentName}  </div>
