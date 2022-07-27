@@ -29,7 +29,7 @@ const Slug = () => {
     <>
      { loader && <AssignMentLoader  className= " m-5 p-5 md:mx-auto w-full  md:w-[60vw] md:p-10 border-4 rounded-xl"/>}
         
-        {assignment && <Assignment  Slug={assignment.slug?assignment.slug:""}  assignmentName={assignment.assignmentName} createdAt={assignment.postedOn} description={assignment.description} dueDate={assignment.dueDate} postedBy={assignment.postedBy} tags={assignment.tags} /> }
+        {assignment && <Assignment  Slug={assignment.slug?assignment.slug:""}  assignmentName={assignment.assignmentName} createdAt={assignment.postedOn} description={assignment.description} dueDate={assignment.dueDate} dueTime={assignment.dueTime} postedBy={assignment.postedBy} tags={assignment.tags} /> }
     </>
   )
   }

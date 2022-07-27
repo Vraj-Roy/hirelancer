@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import {useSession,signIn,signOut} from 'next-auth/react'
 
 const Signup = ({resetkey}) => { 
-  const [userInputs, setUserInputs] = useState({username:"",firstName:"",lastName:"",youDo:"",education:"",englishProficiency:"" , description:""});  
+  const [userInputs, setUserInputs] = useState({username:"",firstName:"",lastName:"",youDo:"",education:"",englishProficiency:"" , description:"",country:"",phone:""});  
   const [skills, setSkills] = useState([])
    const [loading,setLoading]=useState(false)
   const {data:session} = useSession() 
@@ -26,7 +26,7 @@ const Signup = ({resetkey}) => {
     })
     let response=await res.json(); 
     if(response.success){  
-      setUserInputs({username:response.username,firstName:"",lastName:"",youDo:"",education:"",englishProficiency:"",description:""}) 
+      setUserInputs({username:response.username,firstName:"",lastName:"",youDo:"",education:"",englishProficiency:"",description:"",country:"",phone:""}) 
       
     }else{ 
       console.log("failed") 
@@ -216,6 +216,36 @@ setSkills(skills.filter((el, i) => i !== index))
                 name="education"
                 onChange={onChange}
                 value={userInputs.education}
+                className="w-full bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+        <div className="px-2 w-full">
+            <div className="relative mb-4">
+              <label htmlFor="education" className="leading-7 text-sm text-gray-600">
+              Your Country
+              </label>
+              <input 
+                type="text"
+                id="country"
+                name="country"
+                onChange={onChange}
+                value={userInputs.country}
+                className="w-full bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+          </div>
+        <div className="px-2 w-full">
+            <div className="relative mb-4">
+              <label htmlFor="education" className="leading-7 text-sm text-gray-600">
+              Your Phone
+              </label>
+              <input 
+                type="text"
+                id="phone"
+                name="phone"
+                onChange={onChange}
+                value={userInputs.phone}
                 className="w-full bg-white rounded border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>

@@ -174,16 +174,23 @@ const Navbar = ({resetkey   }) => {
                     <div className="relative">
 
                     <div className="flex flex-col justify-center items-center cursor-pointer" onClick={()=>dropDown?setDropDown(false):setDropDown(true)}>
-                      <div className="h-12 w-12  rounded-full overflow-hidden">
+                    
+                    <div className="flex items-center gap-x-2">
+                        <div className="h-12 w-12  rounded-full overflow-hidden">
                         <img src={userData.profile + `.png`} alt="" />
                       </div>
+                      <div className="  font-semibold text-lg bg-orange-500 p-1 text-white rounded text-sm ">
+                        {userData.role}
+                      </div>
+                      </div>
+                      
                       <div className="font-semibold text-lg">
                         {userData.username}
                       </div>
                     </div>{ dropDown && <div onClick={()=>setDropDown(false)} className="absolute -right-4  text-white text-lg mr-1 rounded-md overflow-hidden ">
                         <Link href={`/profile/${userData.username}`}><div className="bg-orange-500 hover:bg-orange-700 border-red-600 border-b-2 cursor-pointer px-4 py-1">Profile</div></Link>
                         <Link href="/settings"><div className="bg-orange-500 hover:bg-orange-700 border-red-600 border-b-2  px-4 py-1 cursor-pointer">Settings</div></Link>
-                        <div onClick={()=>{localStorage.removeItem('token'),resetkey(),signOut()}} className="bg-red-500 hover:bg-red-700 border-y-pink-200 cursor-pointer px-4 py-1">Logout</div>
+                         <div onClick={()=>{localStorage.removeItem('token'),resetkey(),signOut({callbackUrl: `${process.env.URL_PATH}/login`  })}} className="bg-red-500 hover:bg-red-700 border-y-pink-200 cursor-pointer px-4 py-1">Logout</div>
                     </div>}
                     </div>
                     

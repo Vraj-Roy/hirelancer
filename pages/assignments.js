@@ -55,6 +55,7 @@ const Assignments = () => {
               createdAt={d.postedOn}
               description={d.description}
               dueDate={d.dueDate}
+              dueTime={d.dueTime}
               postedBy={d.postedBy}
               tags={d.tags}
             />

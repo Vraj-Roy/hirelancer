@@ -21,7 +21,9 @@ const uploadAssignment=async(req,res)=>{
                             profile_pic:"/profile" , 
                             firstName:req.body.firstName,   
                             lastName:req.body.lastName,
-                            role:"teacher"     
+                            role:"teacher",
+                            country:req.body.country,     
+                            phone:req.body.phone     
                         }
                         )
                         U.save(); 

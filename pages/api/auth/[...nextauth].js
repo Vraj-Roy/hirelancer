@@ -13,7 +13,7 @@ export default NextAuth({
             //  clientSecret:"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",
             clientId:process.env.CLIENT_ID,
             clientSecret:process.env.CLIENT_SECRET,
-             secret:"v",
+             secret:"v", 
             }),   
     ], 
     session: {

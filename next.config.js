@@ -9,7 +9,7 @@ const nextConfig = {
     CLIENT_SECRET:process.env.CLIENT_SECRET
   },
   images:{
-    domains:["miro.medium.com",'upload.wikimedia.org' ]
+    domains:["miro.medium.com",'upload.wikimedia.org','static.javatpoint.com' ]
   },
   resolve: {
     extensions: ['.js', '.jsx']

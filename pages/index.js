@@ -1,13 +1,43 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@mui/material"; 
+import {useRouter} from 'next/router'
+import Blog from '../components/Blog'
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const router = useRouter()
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+      const fetchBlogs=async()=>{
+          let res=await fetch('http://localhost:3000/api/blogs/getAllBlogs',{
+            method:"GET",
+            headers: {
+              "Content-Type": "application/json",
+            },  
+          })
+          let response=await res.json()
+          setBlogs(response) 
+      }
+      fetchBlogs()
+  }, [])
   return (
  <>
  {/* Post Job */} 
  <div style={{backgroundColor:"#ffd700"}}>
- <div className=" w-auto  md:w-[800px] mrs-auto ml-auto h-fit  pt-5 rounded-lg">
+
+ <div className=" flex flex-wrap md:flex-nowrap justify-between">
+ 
+ 
+  <div className="md:w-[50%]">
+  <div className=" text-2xl md:text-5xl mx-10 md:ml-40 mr-20 mx-auto mt-10 md:mt-20">Authentic Assignment Help INDIA </div>
+  <div className=" text-lg md:text-2xl mx-10 md:ml-40 md:mr-20 mt-10">- My Assignment Services</div>
+  <div className=" text-lg md:text-2xl mx-10 md:ml-40 md:mr-20 mt-10">- We Provide You best assignment helps from our world class teachers</div>
+  <div className=" text-lg md:text-2xl mx-10 md:ml-40 md:mr-20 mt-10">- Read our Blog Post to keep up with latest updates. <button onClick={()=>router.push('/blogs')} className="bg-black text-white px-2 py-1  text-md rounded-md">Blogs</button> </div> 
+  </div>
+ 
+ 
+ <div className=" w-auto  md:w-[800px] mx-3   h-fit  pt-5 rounded-lg">
     
     {/* <h2 className="text-3xl text-center text-orange- mb-4">Signup</h2> */}
     <div className="md:mx-12 px-2 bg-white 600 rounded-xl   ">
@@ -127,6 +157,7 @@ export default function Home() {
        
   
     </div>
+  </div>
   </div>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -357,330 +388,13 @@ export default function Home() {
       {/* Blogs Section  */}
       <div className="mx-auto  flex py-4 border-gray-500  justify-center text-4xl font-semibold border-y-2 mt-10 " >Blogs</div>
       {/* Blogs Cards */} 
-      <div className="flex flex-wrap m-auto justify-center items-center fit-content ">
-        <Link href={"/"}>
-          <motion.div
-            initial={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.1)" }}
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.2)",
-            }}
-            className="
-              p-10
-              m-5
-              cursor-pointer
-              w-96 
-              h-80  
-              rounded-lg
-              flex flex-col
-              justify-around
-              items-center
-              bg-white   
-              "
-          >
-            <img
-              className="h-1/2  sm:h-full sm:w-full object-contain"
-              src="https://miro.medium.com/max/1400/1*94Z17dA4rkLL5pOon2ZbCw.jpeg"
-              alt="image"
-            />
-            <div
-              className="
-                flex
-                flex flex-col 
-                items-baseline
-                justify-around 
-                h-full
-                items-baseline 
-                w-full
-                "
-            >
-              <div className="flex flex-col justify-start items-baseline">
-                <h1 className="text-xl font-normal mt-5 text-black font-sans">
-                  Why Next Js is getting popular?
-                </h1>
-              </div>
-
-              <button
-                type="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-                className="inline-block px-3 mt-7 py-2.5 bg-gray-900 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out"
-              >
-                Read More
-              </button>
-            </div>
-          </motion.div>
-        </Link>
         
-        <Link href={"/"}>
-          <motion.div
-            initial={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.1)" }}
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.2)",
-            }}
-            className="
-              p-10
-              m-5
-              cursor-pointer
-              w-96 
-              h-80  
-              rounded-lg
-              flex flex-col
-              justify-around
-              items-center
-              bg-white   
-              "
-          >
-            <img
-              className="h-1/2  sm:h-full sm:w-full object-contain"
-              src="https://miro.medium.com/max/1400/1*94Z17dA4rkLL5pOon2ZbCw.jpeg"
-              alt="image"
-            />
-            <div
-              className="
-                flex
-                flex flex-col 
-                items-baseline
-                justify-around 
-                h-full
-                items-baseline 
-                w-full
-                "
-            >
-              <div className="flex flex-col justify-start items-baseline">
-                <h1 className="text-xl font-normal mt-5 text-black font-sans">
-                  Why Next Js is getting popular?
-                </h1>
-              </div>
-
-              <button
-                type="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-                className="inline-block px-3 mt-7 py-2.5 bg-gray-900 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out"
-              >
-                Read More
-              </button>
-            </div>
-          </motion.div>
-        </Link>
-
-        <Link href={"/"}>
-          <motion.div
-            initial={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.1)" }}
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.2)",
-            }}
-            className="
-              p-10
-              m-5
-              cursor-pointer
-              w-96 
-              h-80  
-              rounded-lg
-              flex flex-col
-              justify-around
-              items-center
-              bg-white   
-              "
-          >
-            <img
-              className="h-1/2  sm:h-full sm:w-full object-contain"
-              src="https://miro.medium.com/max/1400/1*94Z17dA4rkLL5pOon2ZbCw.jpeg"
-              alt="image"
-            />
-            <div
-              className="
-                flex
-                flex flex-col 
-                items-baseline
-                justify-around 
-                h-full
-                items-baseline 
-                w-full
-                "
-            >
-              <div className="flex flex-col justify-start items-baseline">
-                <h1 className="text-xl font-normal mt-5 text-black font-sans">
-                  Why Next Js is getting popular?
-                </h1>
-              </div>
-
-              <button
-                type="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-                className="inline-block px-3 mt-7 py-2.5 bg-gray-900 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out"
-              >
-                Read More
-              </button>
-            </div>
-          </motion.div>
-        </Link>
-
-        <Link href={"/"}>
-          <motion.div
-            initial={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.1)" }}
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.2)",
-            }}
-            className="
-              p-10
-              m-5
-              cursor-pointer
-              w-96 
-              h-80  
-              rounded-lg
-              flex flex-col
-              justify-around
-              items-center
-              bg-white   
-              "
-          >
-            <img
-              className="h-1/2  sm:h-full sm:w-full object-contain"
-              src="https://miro.medium.com/max/1400/1*94Z17dA4rkLL5pOon2ZbCw.jpeg"
-              alt="image"
-            />
-            <div
-              className="
-                flex
-                flex flex-col 
-                items-baseline
-                justify-around 
-                h-full
-                items-baseline 
-                w-full
-                "
-            >
-              <div className="flex flex-col justify-start items-baseline">
-                <h1 className="text-xl font-normal mt-5 text-black font-sans">
-                  Why Next Js is getting popular?
-                </h1>
-              </div>
-
-              <button
-                type="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-                className="inline-block px-3 mt-7 py-2.5 bg-gray-900 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out"
-              >
-                Read More
-              </button>
-            </div>
-          </motion.div>
-        </Link>
-
-        <Link href={"/"}>
-          <motion.div
-            initial={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.1)" }}
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.2)",
-            }}
-            className="
-              p-10
-              m-5
-              cursor-pointer
-              w-96 
-              h-80  
-              rounded-lg
-              flex flex-col
-              justify-around
-              items-center
-              bg-white   
-              "
-          >
-            <img
-              className="h-1/2  sm:h-full sm:w-full object-contain"
-              src="https://miro.medium.com/max/1400/1*94Z17dA4rkLL5pOon2ZbCw.jpeg"
-              alt="image"
-            />
-            <div
-              className="
-                flex
-                flex flex-col 
-                items-baseline
-                justify-around 
-                h-full
-                items-baseline 
-                w-full
-                "
-            >
-              <div className="flex flex-col justify-start items-baseline">
-                <h1 className="text-xl font-normal mt-5 text-black font-sans">
-                  Why Next Js is getting popular?
-                </h1>
-              </div>
-
-              <button
-                type="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-                className="inline-block px-3 mt-7 py-2.5 bg-gray-900 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out"
-              >
-                Read More
-              </button>
-            </div>
-          </motion.div>
-        </Link>
-
-        <Link href={"/"}>
-          <motion.div
-            initial={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.1)" }}
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.2)",
-            }}
-            className="
-              p-10
-              m-5
-              cursor-pointer
-              w-96 
-              h-80  
-              rounded-lg
-              flex flex-col
-              justify-around
-              items-center
-              bg-white   
-              "
-          >
-            <img
-              className="h-1/2  sm:h-full sm:w-full object-contain"
-              src="https://miro.medium.com/max/1400/1*94Z17dA4rkLL5pOon2ZbCw.jpeg"
-              alt="image"
-            />
-            <div
-              className="
-                flex
-                flex flex-col 
-                items-baseline
-                justify-around 
-                h-full
-                items-baseline 
-                w-full
-                "
-            >
-              <div className="flex flex-col justify-start items-baseline">
-                <h1 className="text-xl font-normal mt-5 text-black font-sans">
-                  Why Next Js is getting popular?
-                </h1>
-              </div>
-
-              <button
-                type="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-                className="inline-block px-3 mt-7 py-2.5 bg-gray-900 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out"
-              >
-                Read More
-              </button>
-            </div>
-          </motion.div>
-        </Link>
+      <div className="flex flex-wrap gap-5 mt-10 m-auto justify-center items-center fit-content ">
+        {blogs && blogs.map((b)=>{ return <Blog key={b.slug+Math.random()} slug={b.slug} title={b.title} desc={b.desc} img={b.img} /> })}
+        <div className="w-96 h-0"></div>
+        <div className="w-96 h-0"></div>
+        <div className="w-96 h-0"></div>
+          
       </div>
     </>
   );
