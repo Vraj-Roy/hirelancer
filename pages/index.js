@@ -10,7 +10,7 @@ export default function Home() {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
       const fetchBlogs=async()=>{
-          let res=await fetch('http://localhost:3000/api/blogs/getAllBlogs',{
+          let res=await fetch(`${process.env.URL_PATH}`+'/api/blogs/getAllBlogs',{
             method:"GET",
             headers: {
               "Content-Type": "application/json",
