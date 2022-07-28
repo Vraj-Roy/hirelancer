@@ -75,15 +75,17 @@ const Navbar = ({resetkey   }) => {
                 <Link href="/">
                   <img
                     className="block lg:hidden h-8 w-auto cursor-pointer"
-                    src="/freelancer.png"
-                    alt="Workflow"
-                  />
+                    src=""
+                    // src="/freelancer.png"
+                    alt="assignment"
+                    />
                 </Link>
                 <Link href="/">
                   <img
                     className="hidden lg:block h-8 w-auto cursor-pointer"
-                    src="freelancer.png"
-                    alt="Workflow"
+                    src=""
+                    // src="freelancer.png"
+                    alt="assignment"
                   />
                 </Link>
               </div>

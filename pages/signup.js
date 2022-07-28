@@ -61,11 +61,11 @@ const Signup = ({ resetkey }) => {
         >
           <div className="w-full md:w-1/3   rounded-lg">
             <div className="flex font-bold justify-center mt-6">
-              <img
-                className="h-16 w-auto mb-5"
-                src="/freelancer.png"
-                alt="freelancing"
-              />
+            <img
+                    className="hidden lg:block h-8 w-auto cursor-pointer"
+                    src=""
+                    alt="Signup"
+                    />
             </div>
 
             <div className="px-12 pb-10">

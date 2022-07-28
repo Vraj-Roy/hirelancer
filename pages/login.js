@@ -87,10 +87,10 @@ return (
   <div className="w-full md:w-1/3   rounded-lg">
     <div className="flex font-bold justify-center mt-6">
     <img
-            className="h-16 w-auto mb-5"
-            src="/freelancer.png"
-            alt="freelancing"
-          />
+            className="hidden lg:block h-8 w-auto cursor-pointer"
+            src=""
+            alt="Login"
+    />
     </div>
     {/* <h2 className="text-3xl text-center text-orange- mb-4">Login</h2> */}
     <div className="px-12 pb-10">
