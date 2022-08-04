@@ -7,6 +7,7 @@ const FreelancerProfileSchema = mongoose.Schema({
     youDo:{type:String},   
     englishProficiency:{type:String},
     skills:{type:Array},  
+    country:{type:String},
     description:{type:String}  
 }) 
 mongoose.models={}

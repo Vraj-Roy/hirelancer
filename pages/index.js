@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@mui/material"; 
 import {useRouter} from 'next/router'
 import Blog from '../components/Blog'
+import SiteReviews from '../components/SiteReviews'
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
       fetchBlogs()
   }, [])
   return (
- <>
+ <> 
  {/* Post Job */} 
  <div style={{backgroundColor:"#ffd700"}}>
 
@@ -391,6 +392,20 @@ export default function Home() {
         
       <div className="flex flex-wrap gap-5 mt-10 m-auto justify-center items-center fit-content ">
         {blogs && blogs.map((b)=>{ return <Blog key={b.slug+Math.random()} slug={b.slug} title={b.title} desc={b.desc} img={b.img} /> })}
+        <div className="w-96 h-0"></div>
+        <div className="w-96 h-0"></div>
+        <div className="w-96 h-0"></div>
+          
+      </div>
+      <div className="mx-auto  flex py-4 border-gray-500  justify-center text-4xl font-semibold border-y-2 mt-10 " >Reviews</div>
+      {/* Blogs Cards */} 
+        
+      <div className="flex flex-wrap gap-10 mt-10 m-auto justify-center items-center fit-content ">
+      <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} /> 
+      <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} /> 
+      <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} /> 
+      <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} /> 
+      <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} />  
         <div className="w-96 h-0"></div>
         <div className="w-96 h-0"></div>
         <div className="w-96 h-0"></div>

@@ -18,7 +18,6 @@ const uploadAssignment=async(req,res)=>{
                         
                         let U =  await User.findOneAndUpdate({email:user.email},{ 
                             username:req.body.username, 
-                            profile_pic:"/profile" , 
                             firstName:req.body.firstName,   
                             lastName:req.body.lastName,
                             role:"teacher",
@@ -35,6 +34,7 @@ const uploadAssignment=async(req,res)=>{
                             youDo:req.body.youDo,   
                             englishProficiency:req.body.englishProficiency,      
                             skills:req.body.skills,  
+                            country:req.body.country,
                             description:req.body.description    
                         }) 
                         await F.save();

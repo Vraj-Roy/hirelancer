@@ -6,6 +6,7 @@ const Assignments = () => {
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [timeZone, settimeZone] = useState("");
 
   useEffect(() => {
     const getAllAssignments = async () => {
@@ -16,6 +17,7 @@ const Assignments = () => {
         },
       });
       let response = await res.json();
+       
       setLoader(false);
       setData(response);
     };
@@ -29,11 +31,11 @@ const Assignments = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
           value={searchQuery}
           type="text"
-          className=" border-2  h-12 border-orange-500 outline-orange-600 px-3 w-[80vw] md:max-w-[900px] text-lg"
+          className=" border-2 rounded-md h-12 border-orange-500 outline-orange-600 px-3 w-[85vw] md:max-w-[55vw] text-lg"
         />{" "}
         <button
           onClick={() => Router.push(`/assignments/tags/${searchQuery}`)}
-          className="min-w-fit w-[10vw] md:w-[5vw] border-2 border-orange-500  h-12"
+          className="min-w-fit rounded-md   w-[10vw] md:w-[5vw] border-2 border-orange-500  h-12"
         >
           search
         </button>
@@ -58,6 +60,7 @@ const Assignments = () => {
               dueTime={d.dueTime}
               postedBy={d.postedBy}
               tags={d.tags}
+              timeZone={d.timeZone}
             />
           );
         })}

@@ -72,7 +72,7 @@ const Navbar = ({resetkey   }) => {
             </div>
             <div className="flex items-center justify-betweem  ">
               <div className="flex-shrink-0 flex items-center">
-                <Link href="/">
+                {/* <Link href="/">
                   <img
                     className="block lg:hidden h-8 w-auto cursor-pointer"
                     src=""
@@ -81,40 +81,57 @@ const Navbar = ({resetkey   }) => {
                     />
                 </Link>
                 <Link href="/">
-                  <img
-                    className="hidden lg:block h-8 w-auto cursor-pointer"
-                    src=""
-                    // src="freelancer.png"
-                    alt="assignment"
-                  />
-                </Link>
+                <img
+                className="hidden lg:block h-8 w-auto cursor-pointer"
+                src=""
+                // src="freelancer.png"
+                alt="assignment"
+                />
+              </Link> */}
+              <Link href="/">
+                <div  className="block lg:hidden h-8 w-auto cursor-pointer font-bold mt-1">
+                   ITAssignmentHelp
+                </div>
+                </Link> 
+              <Link href="/">
+                <div 
+                 className={"hidden lg:block h-8 w-auto cursor-pointer font-bold mt-1 "+ (router.pathname=="/"?"text-orange-500 ":"text-black") }>
+                
+                   ITAssignmentHelp
+                </div>
+                  </Link> 
               </div>
               <div className="hidden sm:block sm:ml-6">
                 <div className="flex ">
                   {/* Current: "bg-gray-900 text-white", Default: "text-black  " */}
                   <Link href="/teachers">
-                    <div className=" px-3 py-2 rounded-md text-md font-medium cursor-pointer">
+                    <div className={" py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/teachers"?"text-orange-500 ":"text-black") }>
                       Find Teachers
                     </div>
                   </Link>
                   <Link href="/assignments">
-                    <div className="text-black   px-3 py-2 rounded-md text-md font-medium cursor-pointer">
+                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname.includes("/assignments")?"text-orange-600":"text-black") }>
                       Find Assignments
                     </div>
                   </Link>
                   <Link href="/about">
-                    <div className="text-black   px-3 py-2 rounded-md text-md font-medium cursor-pointer">
+                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/about"?"text-orange-600":"text-black") }>
                       About
                     </div>
                   </Link>
                   <Link href="/solutions">
-                    <div className="text-black   px-3 py-2 rounded-md text-md font-medium cursor-pointer">
+                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/solutions"?"text-orange-600":"text-black") }>
                       Solutions
                     </div>
                   </Link>
                   <Link href="/blogs">
-                    <div className="text-black   px-3 py-2 rounded-md text-md font-medium cursor-pointer">
+                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname.includes("/blogs")?"text-orange-600":"text-black") }>
                       Blogs
+                    </div>
+                  </Link>
+                  <Link href="/contact">
+                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/contact"?"text-orange-600":"text-black") }>
+                      Contact Us
                     </div>
                   </Link>
                 </div>
@@ -159,13 +176,13 @@ const Navbar = ({resetkey   }) => {
                     <div>
                       <button
                         onClick={() => router.push("/login")}
-                        className="mx-2 py-2 px-3 text-white rounded-md  bg-orange-600 hover:bg-orange-700"
+                        className="mx-2 md:py-2 py-1 px-2 md:px-5 text-white rounded-3xl bg-orange-600   border-2 border-orange-500 hover:bg-orange-700"
                       >
                         Login
                       </button>
                       <button
                         onClick={() => router.push("/signup")}
-                        className="mx-2 py-2 px-3 text-white rounded-md bg-orange-600 hover:bg-orange-700"
+                        className="mx-2 md:py-2 py-1 px-2 md:px-5 text-black rounded-3xl  bg-white border-2  hover:bg-gray-200"
                       >
                         Sign Up
                       </button>
@@ -179,7 +196,7 @@ const Navbar = ({resetkey   }) => {
                     
                     <div className="flex items-center gap-x-2">
                         <div className="h-12 w-12  rounded-full overflow-hidden">
-                        <img src={userData.profile + `.png`} alt="" />
+                        <img src={userData.profile} alt="" />
                       </div>
                       <div className="  font-semibold text-lg bg-orange-500 p-1 text-white rounded text-sm ">
                         {userData.role}
@@ -190,7 +207,7 @@ const Navbar = ({resetkey   }) => {
                         {userData.username}
                       </div>
                     </div>{ dropDown && <div onClick={()=>setDropDown(false)} className="absolute -right-4  text-white text-lg mr-1 rounded-md overflow-hidden ">
-                        <Link href={`/profile/${userData.username}`}><div className="bg-orange-500 hover:bg-orange-700 border-red-600 border-b-2 cursor-pointer px-4 py-1">Profile</div></Link>
+                        <a href={`/profile/${userData.username}`}><div className="bg-orange-500 hover:bg-orange-700 border-red-600 border-b-2 cursor-pointer px-4 py-1">Profile</div></a>
                         <Link href="/settings"><div className="bg-orange-500 hover:bg-orange-700 border-red-600 border-b-2  px-4 py-1 cursor-pointer">Settings</div></Link>
                          <div onClick={()=>{localStorage.removeItem('token'),resetkey(),signOut({callbackUrl: `${process.env.URL_PATH}/login`  })}} className="bg-red-500 hover:bg-red-700 border-y-pink-200 cursor-pointer px-4 py-1">Logout</div>
                     </div>}

@@ -6,13 +6,26 @@ import { useRouter } from 'next/router';
 import {useSession,signIn,signOut} from 'next-auth/react'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CookieConsent,{ Cookies, resetCookieConsentValue } from 'react-cookie-consent';
 
-const Login = ({resetkey}) => {  
+const Login = ({resetkey,consent,setCookiesBarVisible}) => {  
   const [userData,setUserData] = useState({email:"",password:""});  
   const [sent,setSent] = useState(true)  
   const [loading,setLoading]=useState(false) 
   const {data:session} = useSession() 
   const router=useRouter();
+  
+  const onGoogleLogin=()=>{ 
+    console.log(consent)
+    if(consent=="true"){
+      signIn('google')
+    }else{
+     toast.error("You must accept Cookies in order to sign in with google");   
+     document.cookie= "Cookie-Consent=false; expires=Thu, 01 Jan 1970 00:00:00 UTC;  path=/;"  
+     setCookiesBarVisible("show") 
+    }  
+  }
+
   const onChange=(e)=>{
       setUserData({...userData,[e.target.name]:e.target.value})
     }
@@ -141,13 +154,13 @@ return (
       </button>
       <button
         // onClick={()=>signIn('google')} 
-        onClick={()=>signIn('google')}
+        onClick={onGoogleLogin}
         type="submit"
         className="w-full py-2 mb-5 flex align-middle text-center justify-center rounded-md border-2 hover:bg-gray-100 bg-white text-black  focus:outline-none"
       >
          <img style={{width:"20px",height:"20px"}} className="mx-2 mt-1 " src="/google_svg.svg" alt="" />
        
-         Continue with Google {''}
+         Continue with Google  
            
         
       </button>
@@ -171,8 +184,7 @@ return (
     </div>
   </div>
 </div>
-</div>
-
+</div> 
     </>
   )
 }

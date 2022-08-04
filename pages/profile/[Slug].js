@@ -18,8 +18,7 @@ const Slug = ({ data, posts }) => {
       },
       body: JSON.stringify({ username: Slug,token:localStorage.getItem('token') }),
     });
-    let response = await res.json(); 
-    console.log(response  )
+    let response = await res.json();  
 
     if(response.U.role=="" && response.sameUser){
       router.push("/signup/options")
@@ -48,8 +47,7 @@ const Slug = ({ data, posts }) => {
   }
    
          
-  if(!userData ){
-    console.log(userData)
+  if(!userData ){ 
      return (
        <div className="flex  h-[80vh] w-[90vw] overflow-hidden justify-center items-center">
         <div className="  text-4xl  rounded-md">Loading</div>
@@ -71,11 +69,11 @@ const Slug = ({ data, posts }) => {
 
       {userData.success && (
         <>
-        <div className="md:w-[80vw] mx-5 md:mx-auto">
+        <div className="md:w-[70vw] mx-5 md:mx-auto">
 
       <div className="overflow-hiden rounded-full ml-20 mr-auto flex items-center   my-8 ">
         <div className="flex flex-col justify-center ">
-        <img src={userData.U.profile_pic+".png"} className="w-28 h-28 rounded-full  border-4 border-white" alt="" /><div className="text-center text-xl"> {'@' + userData.U.username}</div>
+        <img src={userData.U.profile_pic} className="w-28 h-28 rounded-full  border-4 border-white" alt="" /><div className="text-center text-xl"> {'@' + userData.U.username}</div>
         </div>
         <div className="text-4xl font-bold hidden md:block md:ml-40">Profile</div>
       </div>
@@ -116,9 +114,11 @@ const Slug = ({ data, posts }) => {
         </div>
         </>
       )}
+      { assignmentData.success &&   assignmentData.A.length>0 && userData &&  userData.U.role=="student" && <><div className="text-4xl font-bold py-2 border-t-2 border-b-2 border-gray-700 text-center w-auto md:w-[65vw] mx-auto">Assignments</div>
         { assignmentData.success && (assignmentData.A).map(a=>{ return <Assignment key={a._id}  Slug={a.slug?a.slug:""}  assignmentName={a.assignmentName} createdAt={a.postedOn} description={a.description} dueDate={a.dueDate} postedBy={a.postedBy} tags={a.tags} />  
         })
         }
+      </>}
     </>
   );
 };

@@ -7,7 +7,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Signup = ({ resetkey }) => {
+const Signup = ({ resetkey, consent,setCookiesBarVisible}) => {
   const { data: session } = useSession();
   const router = useRouter();
   const [userData, setUserData] = useState({
@@ -40,7 +40,16 @@ const Signup = ({ resetkey }) => {
     } else { 
       toast.error(response.message);
     }
-  };
+  }; 
+const onGoogleSignUp=()=>{ 
+  if(consent=="true"){  
+    signIn("google", {callbackUrl: `${process.env.URL_PATH}/signup/options`,})
+  }else{
+   toast.error("You must accept Cookies in order to sign in with google");   
+   document.cookie= "Cookie-Consent=false; expires=Thu, 01 Jan 1970 00:00:00 UTC;  path=/;"  
+   setCookiesBarVisible("show") 
+  }  
+}
 
   return (
     <>
@@ -131,11 +140,7 @@ const Signup = ({ resetkey }) => {
               </button>
               <button
                 // onClick={()=>signIn('  ')}
-                onClick={() =>
-                  signIn("google", {
-                    callbackUrl: `${process.env.URL_PATH}/signup/options`,
-                  })
-                }
+                onClick={onGoogleSignUp}
                 type="submit"
                 className="w-full py-2 mb-5 flex align-middle text-center justify-center rounded-md border-2 hover:bg-gray-100 bg-white text-black  focus:outline-none"
               >

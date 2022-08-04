@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import  Link from 'next/link';
 
-const Assignment = ({assignmentName,createdAt,description,dueDate,postedBy, Slug, tags ,dueTime})=>{
+const Assignment = ({assignmentName,createdAt,description,dueDate,postedBy, Slug, tags ,dueTime,timeZone})=>{
     const [date,setDate]=useState("");
     const [newDuedate,setNewDueDate]=useState("");
     const [newDueTime,setNewDueTime]=useState(dueTime);
@@ -18,7 +18,7 @@ const Assignment = ({assignmentName,createdAt,description,dueDate,postedBy, Slug
                 setNewDueDate(`${date}/${m}/${y}`) 
             }
 
-
+ 
 
             function tConvert(time) {
               // Check correct time format and split into components
@@ -46,9 +46,9 @@ const Assignment = ({assignmentName,createdAt,description,dueDate,postedBy, Slug
         <Link href={Slug==""?("#"):(`/assignments/`+Slug)    }>
         <div className="cursor-pointer">
 
-         <div className="   mx-5 md:max-w-[900px] p-2 md:p-8 shadow-md md:mx-auto border-2 border-orange-300 rounded-md my-5">
+         <div className="   mx-2 md:max-w-[60vw] p-2 md:p-8 shadow-md md:mx-auto border-2 border-orange-300 rounded-md my-5">
             <div className="flex justify-between">
-            <div className="text-gray-700 my-2" >Due on <span className="font-semibold text-md ml-1 text-gray-900"><span className="text-bold underline"> {newDuedate} </span>  on <span className="text-bold underline">{newDueTime} </span></span>  </div>
+            <div className="text-gray-700 my-2" >Due on <span className="font-semibold text-md ml-1 text-gray-900"><span className="text-bold underline"> {newDuedate} </span>  on <span className="text-bold underline">{newDueTime} {timeZone=="-330"?"IST":timeZone}</span></span>  </div>
             <div className="text-gray-700 my-2" >Posted on <span className="font-semibold text-md ml-1 text-gray-900"> {date} </span>  </div>
             </div>
             
