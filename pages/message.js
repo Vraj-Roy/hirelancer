@@ -50,8 +50,8 @@ const Message = () => {
   if(convoUsers){
     return (
     <>
-      <div className="grid" style={{ gridTemplateColumns: "30% 70%" }}>
-        <div className=" h-[89vh] overflow-auto ">
+      <div className={"md:grid  "} style={{ gridTemplateColumns: "30% 70%" }}>
+        <div className={" h-[89vh] overflow-auto " + (to?"md:block hidden":"block " )}> 
         {convoUsers && convoUsers.map((c)=>{
           return <><div className={to==c.uid?'bg-gray-500':''} onClick={()=>{setTo(c.uid);setUser(c.username);setChannelName(c.channel);setProfilePic(c.profile_pic)}}>
           <div className="border-2 p-4 flex items-center gap-5 cursor-pointer">
@@ -66,7 +66,9 @@ const Message = () => {
         })}
          
         </div>
+        <div className={"md:block "+ to?"block":""}>
      {to && <Chatbox from={from} to={to} profilePic={profilePic} channelName={channelName} user={user}/> }
+        </div>
       </div>
     </>
   );
