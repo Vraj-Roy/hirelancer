@@ -11,7 +11,7 @@ const addBlog=async(req,res)=>{
         slug:slug, 
      })
      B.save();
-     res.json(B)
+     res.json({success:true})
 }
 
 export default addBlog

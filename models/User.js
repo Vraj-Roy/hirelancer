@@ -10,7 +10,9 @@ const UserSchema = mongoose.Schema({
     lastName:{type:String,default:""},    
     phone:{type:String,default:""},   
     country:{type:String,default:""},    
-    role:{type:String,default:""},    
+    role:{type:String,default:""},
+    uid:{type:Number,default:Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))}
+
 }) 
 mongoose.models={}
 module.exports=  mongoose.model('User',UserSchema);

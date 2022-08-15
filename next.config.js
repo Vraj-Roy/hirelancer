@@ -6,10 +6,11 @@ const nextConfig = {
     URL_PATH : process.env.URL_PATH,  
     DB_URI : process.env.DB_URI,
     CLIENT_ID:process.env.CLIENT_ID,
-    CLIENT_SECRET:process.env.CLIENT_SECRET
+    CLIENT_SECRET:process.env.CLIENT_SECRET,
+    ABLY_API:process.env.ABLY_API
   },
   images:{
-    domains:["miro.medium.com",'upload.wikimedia.org','static.javatpoint.com','res.cloudinary.com' ]
+    domains:["miro.medium.com",'upload.wikimedia.org','static.javatpoint.com','res.cloudinary.com','i.gadgets360cdn.com' ]
   },
   resolve: {
     extensions: ['.js', '.jsx']
