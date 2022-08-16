@@ -44,6 +44,13 @@ const Navbar = ({resetkey   }) => {
       <nav className="bg-white fixed w-[100vw] z-40 border-b-2">
         <div className="mx-auto px-2 sm:px-6 lg:px-8 py-2">
           <div className="  flex items-center justify-between h-16 ">
+                      <Link href="/">
+                        <div 
+                         className={"hidden lg:block h-8 w-auto cursor-pointer font-bold mt-1 "+ (router.pathname=="/"?"text-orange-500 ":"text-black") }>
+                        
+                           ITAssignmentHelp
+                        </div>
+                          </Link> 
             <div className="   flex items-center sm:hidden">
               {/* Mobile menu button*/}
     
@@ -93,13 +100,6 @@ const Navbar = ({resetkey   }) => {
                    ITAssignmentHelp
                 </div>
                 </Link> 
-              <Link href="/">
-                <div 
-                 className={"hidden lg:block h-8 w-auto cursor-pointer font-bold mt-1 "+ (router.pathname=="/"?"text-orange-500 ":"text-black") }>
-                
-                   ITAssignmentHelp
-                </div>
-                  </Link> 
               </div>
               <div className="hidden sm:block sm:ml-6">
                 <div className="flex ">
