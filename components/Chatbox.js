@@ -3,15 +3,14 @@ import { useChannel } from "../pages/api/AblyReactEffect/AblyReactEffect";
 import dynamic from "next/dynamic"; 
 import Link from 'next/link';
 
-const Chatbox = ({from,to,channelName,user}) => {
+const Chatbox = ({from,to,channelName,user,profilePic}) => {
   let inputBox = null;
   let messageEnd = null;
   const [messageText, setMessageText] = useState("");
   const [receivedMessages, setMessages] = useState([]);
   const [dbMessages, setDbMessages] = useState([]);
-
   const messageTextIsEmpty = messageText.trim().length === 0; 
-    const [channel, ably] = useChannel(channelName, (message) => {
+  const [channel, ably] = useChannel(channelName, (message) => {
       // Here we're computing the state that'll be drawn into the message history
       // We do that by slicing the last 199 messages from the receivedMessages buffer
   
@@ -22,6 +21,17 @@ const Chatbox = ({from,to,channelName,user}) => {
       // This means we'll always have up to 199 message + 1 new message, stored using the
       // setMessages react useState hook  
     }); 
+    
+    window.onunload = () => {channel.detach( channelName);}
+    // useEffect(()=>{
+    //   return ()=>{
+    //     channel.detach();
+    //   }
+    // },[])
+    
+//   channel.on('detached', function(stateChange) {
+//   console.log('detached from the channel ' + channel.name);
+// });
   const sendChatMessage = async(messageText) => {
 
     const token=localStorage.getItem('token')
@@ -72,7 +82,7 @@ const Chatbox = ({from,to,channelName,user}) => {
       return (
         <div className="flex gap-x-5">
           <img
-            src="/profile.png"
+            src={profilePic}
             className="w-12 h-12 rounded-full self-end"
             alt=""
           />
@@ -115,13 +125,14 @@ const Chatbox = ({from,to,channelName,user}) => {
 
     return (
       <div
-      className=" grid h-[89vh]  "
-      style={{ gridTemplateRows: "10% 80% 10%" }}
+      className=" grid h-[89vh] bg-gray-100 p-3 "
+      style={{ gridTemplateRows: "10% 75% 10%" , gap:"0.7rem"}}
     >
-      <div className="border-2 text-blue-600 text-xl font-bold p-5">
-        {user}
+      <div className=" marker:selection:   font-semibold py-2  px-4  bg-white   shadow  flex items-center gap-x-3 rounded">
+        <img src={(profilePic=="/profile"?"/profile.png":profilePic)} className="rounded-full h-10 w-10" alt="" />
+        {user} 
       </div>
-      <div className="border-2 flex flex-col gap-y-5 p-5 overflow-auto">
+      <div className="  flex flex-col gap-y-5 p-5 overflow-auto bg-white   shadow rounded">
          
        
       {dbMessages && dbMessages.map((m) => {
@@ -135,7 +146,7 @@ const Chatbox = ({from,to,channelName,user}) => {
                 return (
                   <div className="flex gap-x-5">
                     <img
-                      src="/profile.png"
+                      src={profilePic}
                       className="w-12 h-12 rounded-full self-end"
                       alt=""
                     />
@@ -159,7 +170,7 @@ const Chatbox = ({from,to,channelName,user}) => {
           }}
         ></div>
       </div>
-      <div className="bg-gray-200 border-t-2 border-gray-500 py-2 px-4 flex gap-x-5">
+      <div className="    py-2 px-4 flex gap-x-5 bg-white   shadow  rounded">
         <input
           type="text"
           ref={(element) => {

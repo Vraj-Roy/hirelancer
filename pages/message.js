@@ -46,19 +46,19 @@ const Message = () => {
     }
     getUid()
     getChatUsers()
-  },[]) 
+  },[])  
   if(convoUsers){
     return (
     <>
-      <div className={"md:grid  "} style={{ gridTemplateColumns: "30% 70%" }}>
-        <div className={" h-[89vh] overflow-auto " + (to?"md:block hidden":"block " )}> 
+      <div className={"md:grid  "} style={{ gridTemplateColumns: "25% 75%" }}>
+        <div className={" h-[89vh] overflow-auto px-2 bg-gray-100 " + (to?"md:block hidden":"block " )}> 
         {convoUsers && convoUsers.map((c)=>{
-          return <><div className={to==c.uid?'bg-gray-500':''} onClick={()=>{setTo(c.uid);setUser(c.username);setChannelName(c.channel);setProfilePic(c.profile_pic)}}>
-          <div className="border-2 p-4 flex items-center gap-5 cursor-pointer">
+          return <><div className={' my-3 rounded-xl ' + (to==c.uid?'bg-gray-700 text-white   shadow-xl':'bg-white')} onClick={()=>{setTo(c.uid);setUser(c.username);setChannelName(c.channel);setProfilePic(c.profile_pic)}}>
+          <div className=" p-4 flex items-center gap-5 cursor-pointer">
             <img src="/profile.png" className="w-12 h-12 rounded-full" alt="" />
             <div>
               <div>{c.username}</div>
-              <div>mY Message</div>
+              <div className={"text-sm" + (to==c.uid?"text-gray-300":"text-gray-600")}>Last Message</div>
             </div>
           </div>
             </div>
