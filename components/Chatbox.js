@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useChannel } from "../pages/api/AblyReactEffect/AblyReactEffect";
 import dynamic from "next/dynamic"; 
 import Link from 'next/link';
+var isPhone = require('is-phone'); 
+var validator = require("email-validator");
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Chatbox = ({from,to,channelName,user,profilePic}) => {
   let inputBox = null;
@@ -33,7 +37,12 @@ const Chatbox = ({from,to,channelName,user,profilePic}) => {
 //   console.log('detached from the channel ' + channel.name);
 // });
   const sendChatMessage = async(messageText) => {
-
+     
+    if( isPhone(messageText) || validator.validate(messageText) ){
+      toast.error("You may not share your personal details ");
+      setMessageText("");
+      return 
+    }
     const token=localStorage.getItem('token')
     
     channel.publish({ name:channelName, data: messageText });
@@ -69,6 +78,7 @@ const Chatbox = ({from,to,channelName,user,profilePic}) => {
   };
   const messages = receivedMessages.map((message, index) => {
     const author = message.connectionId === ably.connection.id ? "me" : "other";
+
     if (author == "me") {
       return (
         <div
@@ -122,8 +132,23 @@ const Chatbox = ({from,to,channelName,user,profilePic}) => {
     setMessages([])
     getMessages();
   }, [to]);
-
+  
+  window.onunload =()=>(ably.connection.close())
+  window.onunload =()=>(window.alert("hi"))
     return (
+      <>
+        <ToastContainer
+        position="bottom-left"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      
       <div
       className=" grid h-[89vh] bg-gray-100 p-3 "
       style={{ gridTemplateRows: "10% 75% 10%" , gap:"0.7rem"}}
@@ -192,6 +217,7 @@ const Chatbox = ({from,to,channelName,user,profilePic}) => {
       </div>
     </div>
       
+          </>
   )
 }
 
