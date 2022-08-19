@@ -72,8 +72,8 @@ function MyApp({ Component, pageProps }) {
   buttonText="Accept"
   declineButtonText="Reject"
   cookieName="Cookie-Consent"
-  onDecline={()=>{setCookiesBarVisible("hidden");setConsent("false")}}
   onAccept={()=>{setCookiesBarVisible("hidden");setConsent("true")}}
+  onDecline={()=>{setCookiesBarVisible("hidden");setConsent("false")}}
   style={{
     background: "#F97316", 
     border:"2px solid black",

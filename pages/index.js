@@ -31,10 +31,11 @@ export default function Home() {
  
  
   <div className="md:w-[50%]">
-  <div className=" text-2xl md:text-5xl mx-10 md:ml-40 mr-20 mx-auto mt-10 md:mt-20">Authentic Assignment Help INDIA </div>
-  <div className=" text-lg md:text-2xl mx-10 md:ml-40 md:mr-20 mt-10">- My Assignment Services</div>
-  <div className=" text-lg md:text-2xl mx-10 md:ml-40 md:mr-20 mt-10">- We Provide You best assignment helps from our world class teachers</div>
-  <div className=" text-lg md:text-2xl mx-10 md:ml-40 md:mr-20 mt-10">- Read our Blog Post to keep up with latest updates. <button onClick={()=>router.push('/blogs')} className="bg-black text-white px-2 py-1  text-md rounded-md">Blogs</button> </div> 
+  {/* <div className=" text-2xl md:text-5xl mx-10 md:ml-40 mr-20 mx-auto mt-10 md:mt-20">Authentic Assignment Help INDIA </div> */}
+  <div className="   mx-10 md:ml-40 md:mr-20 mt-10 font-bold text-4xl text-blue-700">Are you looking for urgent homework help online? </div>
+  <div className="   mx-10 md:ml-40 md:mr-20 mt-10 font-bold  text-3xl  ">Or want homework writing help. </div> 
+  <div className=" text-lg md:text-2xl mx-10 md:ml-40 md:mr-20 mt-10">Get instant homework help with complex programming, mathematics, or engineering assignments help. </div> 
+  <div className=" text-lg md:text-2xl mx-10 md:ml-40 md:mr-20 mt-10"> ITassignmentHelp is the Best choice for students to get assignments done online at an affordable price. </div> 
   </div>
  
  
