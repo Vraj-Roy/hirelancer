@@ -105,37 +105,37 @@ const Navbar = ({resetkey   }) => {
                 <div className="flex ">
                   {/* Current: "bg-gray-900 text-white", Default: "text-black  " */}
                   <Link href="/teachers">
-                    <div className={" py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname.includes("/teachers")?"text-orange-500 ":"text-black") }>
+                    <div className={" py-2 rounded-md text-lg font-medium cursor-pointer hover:text-orange-600 " + (router.pathname.includes("/teachers")?"text-orange-500 ":"text-black") }>
                       Find Teachers
                     </div>
                   </Link>
                   <Link href="/assignments">
-                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname.includes("/assignments")?"text-orange-600":"text-black") }>
+                    <div className={"   px-3 py-2 rounded-md text-lg font-medium cursor-pointer hover:text-orange-600 " + (router.pathname.includes("/assignments")?"text-orange-600":"text-black") }>
                       Find Assignments
                     </div>
                   </Link>
                   <Link href="/about">
-                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/about"?"text-orange-600":"text-black") }>
+                    <div className={"   px-3 py-2 rounded-md text-lg font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/about"?"text-orange-600":"text-black") }>
                       About
                     </div>
                   </Link>
                   <Link href="/solutions">
-                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/solutions"?"text-orange-600":"text-black") }>
+                    <div className={"   px-3 py-2 rounded-md text-lg font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/solutions"?"text-orange-600":"text-black") }>
                       Solutions
                     </div>
                   </Link>
                   <Link href="/blogs">
-                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname.includes("/blogs")?"text-orange-600":"text-black") }>
+                    <div className={"   px-3 py-2 rounded-md text-lg font-medium cursor-pointer hover:text-orange-600 " + (router.pathname.includes("/blogs")?"text-orange-600":"text-black") }>
                       Blogs
                     </div>
                   </Link>
                   <Link href="/contact">
-                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/contact"?"text-orange-600":"text-black") }>
+                    <div className={"   px-3 py-2 rounded-md text-lg font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/contact"?"text-orange-600":"text-black") }>
                       Contact Us
                     </div>
                   </Link>
                   <Link href="/message">
-                    <div className={"   px-3 py-2 rounded-md text-md font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/message"?"text-orange-600":"text-black") }>
+                    <div className={"   px-3 py-2 rounded-md text-lg font-medium cursor-pointer hover:text-orange-600 " + (router.pathname=="/message"?"text-orange-600":"text-black") }>
                     Messages
                     </div>
                   </Link>
