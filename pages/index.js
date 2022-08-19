@@ -43,6 +43,7 @@ export default function Home() {
     
     {/* <h2 className="text-3xl text-center text-orange- mb-4">Signup</h2> */}
     <div className="md:mx-12 px-2 bg-white 600 rounded-xl   ">
+      <div className="font-bold text-4xl text-center py-5 text-blue-600">Get IT Assignment Help Now!</div>
     <div className="mx-auto flex flex-wrap font-bold text-3xl">
           <div className="px-2 md:w-1/2">
             <div className="relative mb-4">
