@@ -63,9 +63,9 @@ const send=async()=>{
         draggable
         pauseOnHover
       />
-        <div className="container main w-full h-[80vh] flex justify-center items-center">
-            <Link href="/signup/teacher"><div className="bg-orange-500 hover:bg-orange-600 cursor-pointer p-10 text-lg font-semibold mx-5 rounded text-white">Sign up as teacher</div></Link>
-            <Link href="/signup/student"><div className="bg-orange-500 hover:bg-orange-600 cursor-pointer p-10 text-lg font-semibold mx-5 rounded text-white">Sign up as Student</div></Link>
+        <div className="container main w-[100vw] h-[80vh] flex justify-center mx-auto items-center">
+            <Link href="/signup/teacher"><a><img src="/teacher.jpg" alt="" className="h-40 mx-auto w-40" /><div className="bg-orange-500 hover:bg-orange-600 cursor-pointer p-10 md:text-lg font-semibold mx-5 rounded text-white">Sign up as teacher</div></a></Link>
+            <Link href="/signup/student"><a><img src="/student.jpg" alt="" className="h-40  mx-auto w-40" /><div className="bg-orange-500 hover:bg-orange-600 cursor-pointer p-10 md:text-lg font-semibold mx-5 rounded text-white">Sign up as Student</div></a></Link>
         </div>
         </>
         )

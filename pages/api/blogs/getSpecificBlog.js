@@ -4,7 +4,11 @@ import Blog from '../../../models/Blog'
 const getSpecificBlog = async(req,res) => {
     await connectDb()
     let B=await Blog.findOne({slug:req.body.slug}) 
-    res.json(B)
+    if(B){
+        res.json({success:true,blog:B})
+    }else{
+        res.json({success:false})
+    }
 }
 
 export default getSpecificBlog

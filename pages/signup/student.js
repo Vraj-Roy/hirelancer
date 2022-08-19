@@ -95,7 +95,7 @@ function removeTag(index){
        </div>
     <div  >
       <div className={`main-bg w-full   overflow-hidden flex flex-wrap md:flex-nowrap  items-center justify-center `}>
-  <div className="w-full  md:w-[60vw]   rounded-lg">
+  <div className="w-full  md:w-[900px]   rounded-lg">
     
     {/* <h2 className="text-3xl text-center text-orange- mb-4">Signup</h2> */}
     <div className="md:px-12 pb pb-10">
@@ -248,7 +248,7 @@ function removeTag(index){
             
             </div>
             <div className="leading-7 text-sm font-bold  text-gray-600" >Enter what you are good at</div>
-            <div className="tags-input-container border-2 border-black p-2 rounded-sm min-w-[80vw, 600px]  flee items-center flex-wrap  ">
+            <div className="tags-input-container border-2 border-black p-2 rounded-sm    flee items-center flex-wrap  ">
             {  tags.map((tag, index) => ( <div key={index}  className=" text-lg mx-1 my-1 tag-item bg-gray-300 inline-block py-1 px-2 rounded-xl  ml-2">
                 <span className="text">{tag}</span>
                 <span className="close ml-2 text-red-800  cursor-pointer" onClick={() => removeTag(index)}>&times;</span>

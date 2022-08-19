@@ -2,16 +2,14 @@
 const Contact = () => {
   return (
    <>
-   <div className="bg-cyan-500 py-8 ">
+   <div className="  bg-gray-50   py-8 ">
 
-    <div className="w-[80vw] mx-auto    ">
+    <div className="md:w-[900px]    mx-auto    ">
         <div className=" pb-10  flex flex-col  ">
-    <span className="font-bold text-3xl text-gray-200">Contact With Us</span>
-    <span className="font-semibold mt-5 text-gray-200">We would love to hear your queries and get in touch with you</span>
-    <span className="font-semibold  text-gray-200">Feel Free to get in touch with us</span>
+    <span className="font-bold text-3xl text-gray-900 md:m-0 mx-5 ">Contact With Us</span>
         </div>
     
-    <div className="flex flex-wrap md:flex-nowrap shadow-md rounded-md overflow-hidden" >
+    <div className="md:mx-0 mx-5 flex flex-wrap md:flex-nowrap gap-y-10 md:-gap-0  md:border-2 border-orange-300 shadow-orange-500 rounded-md overflow-hidden" >
         <div className="bg-white md:w-3/5 md:p-5 pb-5 w-full ">
             <div className="flex flex-col md:flex-row gap-x-10 md:m-5">
                 <div className="w-[80%] mx-auto md:w-1/2">

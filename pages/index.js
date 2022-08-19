@@ -27,7 +27,7 @@ export default function Home() {
  {/* Post Job */} 
  <div style={{backgroundColor:"#ffd700"}}>
 
- <div className=" flex flex-wrap md:flex-nowrap justify-between">
+ <div className=" flex flex-wrap md:flex-nowrap justify-around   2xl:w-[1500px] mx-auto">
  
  
   <div className="md:w-[50%]">
@@ -390,25 +390,22 @@ export default function Home() {
       <div className="mx-auto  flex py-4 border-gray-500  justify-center text-4xl font-semibold border-y-2 mt-10 " >Blogs</div>
       {/* Blogs Cards */} 
         
-      <div className="flex flex-wrap gap-5 mt-10 m-auto justify-center items-center fit-content ">
+      <div className="flex flex-wrap gap-5 mt-10 m-auto justify-center items-center fit-content 2xl:w-[1500px] mx-auto ">
         {blogs && blogs.map((b)=>{ return <Blog key={b.slug+Math.random()} slug={b.slug} title={b.title} desc={b.desc} img={b.img} /> })}
-        <div className="w-96 h-0"></div>
-        <div className="w-96 h-0"></div>
-        <div className="w-96 h-0"></div>
+        {[1,,2,3,4,5,6,7,8,9,10].map((bDummy)=>{return <div key={bDummy} className="w-96 h-0"></div>})}
           
       </div>
       <div className="mx-auto  flex py-4 border-gray-500  justify-center text-4xl font-semibold border-y-2 mt-10 " >Reviews</div>
       {/* Blogs Cards */} 
         
-      <div className="flex flex-wrap gap-10 mt-10 m-auto justify-center items-center fit-content ">
+      <div className="flex flex-wrap gap-10 mt-10 m-auto justify-center items-center fit-content 2xl:w-[1500px]">
       <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} /> 
       <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} /> 
       <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} /> 
       <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} /> 
       <SiteReviews key={Math.random()}  title={"title"} desc={"b.desc"} img={"/b.img"} />  
-        <div className="w-96 h-0"></div>
-        <div className="w-96 h-0"></div>
-        <div className="w-96 h-0"></div>
+      
+        {[1,,2,3,4,5,6,7,8,9,10].map((bDummy)=>{return <div key={bDummy} className="w-96 h-0"></div>})}
           
       </div>
     </>

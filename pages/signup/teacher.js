@@ -96,7 +96,7 @@ setSkills(skills.filter((el, i) => i !== index))
        </div>
     <div  >
       <div className={`main-bg w-full   overflow-hidden flex  items-center justify-center `}>
-  <div className="w-full  md:w-[60vw]   rounded-lg">
+  <div className="w-full  md:w-[900px]   rounded-lg">
    
     {/* <h2 className="text-3xl text-center text-orange- mb-4">Signup</h2> */}
     <div className="md:px-12 pb-10">
@@ -275,7 +275,7 @@ setSkills(skills.filter((el, i) => i !== index))
             </div>
           <div className='my-2'>
           <div className="leading-7 text-sm font-bold ml-2 text-gray-600" >Enter what you are good at</div>
-            <div className="skills-input-container border-2 border-black p-2 rounded-sm min-w-[80vw, 600px] mt-5 flee items-center flex-wrap  ">
+            <div className="skills-input-container border-2 border-black p-2 rounded-sm   mt-5 flee items-center flex-wrap  ">
             {  skills.map((tag, index) => ( <div key={index}  className=" text-lg mx-1 my-1 tag-item bg-gray-300 inline-block py-1 px-2 rounded-xl  ml-2">
                 <span className="text">{tag}</span>
                 <span className="close ml-2 text-red-800  cursor-pointer" onClick={() => removeTag(index)}>&times;</span>

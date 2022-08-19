@@ -201,7 +201,7 @@ const Navbar = ({resetkey   }) => {
                     
                     <div className="flex items-center gap-x-2">
                         <div className="h-12 w-12  rounded-full overflow-hidden">
-                        <img src={userData.profile} alt="" />
+                        <img src={(userData.profile=="/profile"?"profile.png":userData.profile)} alt="" />
                       </div>
                       <div className="  font-semibold text-lg bg-orange-500 p-1 text-white rounded text-sm ">
                         {userData.role}

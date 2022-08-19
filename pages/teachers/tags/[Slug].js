@@ -39,11 +39,11 @@ const Slug = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
           value={searchQuery}
           type="text"
-          className=" border-2  h-12 border-orange-500 outline-orange-600 px-3 w-[80vw] md:w-[55vw] text-lg"
+          className=" border-2  h-12 border-orange-500 outline-orange-600 px-3 w-[80] md:w-[800px] text-lg"
         />{" "}
         <button
           onClick={() => Router.push(`/teachers/tags/${searchQuery}`)}
-          className="min-w-fit w-[10vw] md:w-[5vw] border-2 border-orange-500  h-12"
+          className="min-w-fit w-[10vw] md:w-[100px] border-2 border-orange-500  h-12"
         >
           search
         </button> 

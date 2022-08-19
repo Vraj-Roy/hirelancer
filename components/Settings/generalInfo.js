@@ -20,12 +20,12 @@ const GeneralInfo = ({onChange,imageSrc,user}) => {
                                     className="hidden" 
                                     accept="image/png, image/jpeg"
                                     />
-                                
+                                     
                                 <img
-                                      src={(imageSrc)?imageSrc:user.profile_pic}
+                                      src={(imageSrc ? imageSrc:(user.profile_pic=="/profile"?"profile.png":user.profile_pic ))}
                                       className=" hover:opacity-75 mx-auto w-40 h-40 object-scale-down rounded-full bg-black   overflow-hidden"
                                       alt="" 
-                                      objectFit="contain" 
+                                      objectfit="contain" 
                                       />    
                                         </label>
                                         {/* <label  htmlFor="img">

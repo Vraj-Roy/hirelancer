@@ -7,6 +7,8 @@ const Slug = () => {
   const { Slug } = router.query;
   const [loader, setLoader] = useState(true);
 const [blog, setBlog] = useState(false)
+const [success, setSuccess] = useState("")
+
   const fetchPost = async () => {
     setLoader(true);
     let res = await fetch(
@@ -21,15 +23,17 @@ const [blog, setBlog] = useState(false)
     );
     let response = await res.json();
     console.log(response);
-    setBlog(response)
+    setBlog(response.blog)
     setLoader(false); 
+    setSuccess(JSON.parse(response.success))
+     
   };
 
   useEffect(() => {
     fetchPost(); 
   }, [Slug]);
 
-  if(blog){
+  if(success==true){
     return (
     <>
       <div className="flex justify-around  flex-wrap"> 
@@ -166,7 +170,8 @@ const [blog, setBlog] = useState(false)
  
     </>
   );
-}else{
+}else if(success==false){
+ 
   return <>
   <div className="flex fixed justify-center items-center w-[100vw] h-[80vh]"><div className="text-3xl font-bold">Sorry, Blog Not Found</div></div>
   </>

@@ -28,16 +28,15 @@ const Settings = ({resetkey}) => {
         let data=await res.json();   
 
     
-        setUser(data.userData)
-        console.log(data.userData)
+        setUser(data.userData) 
     }
         getUserData();
     }, [])
     const onChange = (e)=>{
-        e.preventDefault(); 
-        if(e.target.name=="myfile"){
-            setImage(e.target.files[0]);
-            setImageSrc(URL.createObjectURL(e.target.files[0]));
+      e.preventDefault(); 
+      if(e.target.name=="myfile"){
+        setImage(e.target.files[0]);
+        setImageSrc(URL.createObjectURL(e.target.files[0])); 
         }
         else{
             setUser({...user,[e.target.name]:e.target.value})
@@ -68,8 +67,7 @@ const Settings = ({resetkey}) => {
         body: JSON.stringify({token:token,user,profile_pic:url}),
       })    
         let response=await res.json(); 
-        if (response.success){ 
-            console.log(response)
+        if (response.success){  
             localStorage.setItem('token',(response.token))
             resetkey();
             toast.success("Your settings changes are saved succesfully");
@@ -92,9 +90,9 @@ const Settings = ({resetkey}) => {
         pauseOnHover
       />
       
-      <div className="font-bold text-4xl text-center md:text-left md:text-3xl md:w-[80vw] p-5 text-gray-700  fixed z-20 bg-white w-[100vw]">Profile Settings</div>
+      <div className="font-bold text-4xl text-center md:text-left md:text-3xl md:w-[1500px] md:left-[750px] p-5 text-gray-700  fixed z-20 bg-white w-[100vw]">Profile Settings</div>
       <div className="font-bold text-4xl text-center md:text-left md:text-3xl md:w-[80vw] p-5 text-gray-700  invisible ">Profile Settings</div>
-      <div className="md:grid    p-3 rounded-md bg-white " style={{gridTemplateColumns:"25% 75%"}}>
+      <div className="md:grid    p-3 rounded-md bg-white mx-auto md:w-[1500px]" style={{gridTemplateColumns:"25% 75%"}}>
         <div className="hidden md:block"></div>
       <div className="md:fixed border-r-2 md:h-[100vh] ">
         <div className="flex md:block">
